@@ -1,0 +1,18 @@
+[
+    {
+        "agent_id": "",
+        "is_valid": true
+    },
+    {
+        "agent_id": "hesoyam1234",
+        "is_valid": false
+    },
+    {
+        "agent_id": "nuttertools1234",
+        "is_valid": true
+    },
+    {
+        "agent_id": "byebyeworld1234",
+        "is_valid": false
+    }
+]
