@@ -20,17 +20,15 @@ import InputComponent from '../../Components/InputComponent'
 import ButtonComponent from '../../Components/ButtonComponent'
 import axios from 'axios'
 import { AppStore } from '../../Context/AppContext'
-// import { REACT_APP_BASE_URL } from "@env"
+import { REACT_APP_BASE_URL } from "../../Config/config"
 import mainNavigationRoutes from '../../Routes/NavigationRoutes'
-
-const REACT_APP_BASE_URL = "http://192.168.1.218:8002/v1"
 
 const AccountPreview = ({ navigation, route }) => {
   const { userId } = useContext(AppStore)
   const { item, money } = route.params
 
   // const [addedMoney, setAddedMoney] = useState(() => 0)
-  
+
   const tableData = [
     ['A/c Type', (item?.acc_type == 'D') ? "Daily" : (item?.acc_type == 'R') ? "RD" : (item?.acc_type == 'L') ? "Loan" : ""],
     ['A/c No.', item?.account_number],

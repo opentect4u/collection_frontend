@@ -2,9 +2,7 @@ import { createContext, useEffect, useState } from 'react'
 import axios from "axios"
 import DeviceInfo from 'react-native-device-info'
 import { ToastAndroid } from 'react-native'
-// import { REACT_APP_BASE_URL } from "@env"
-
-const REACT_APP_BASE_URL = "http://192.168.1.218:8002/v1"
+import { REACT_APP_BASE_URL } from "../Config/config"
 
 export const AppStore = createContext()
 

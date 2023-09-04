@@ -138,7 +138,7 @@ const AccountDetails = ({ navigation, route }) => {
                     title={'Preview / Save'}
                     customStyle={{ marginTop: 10, width: '60%' }}
                     handleOnpress={handlePreviewData}
-                    disabled={true}
+                    disabled
                   />
                 )
               }
