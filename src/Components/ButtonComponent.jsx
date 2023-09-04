@@ -3,16 +3,16 @@ import React from 'react'
 // import LinearGradient from 'react-native-linear-gradient';
 import { colors } from '../Resources/colors';
 
-const ButtonComponent = ({ title, disabled=false, handleOnpress, customStyle}) => {
+const ButtonComponent = ({ title, disabled = false, handleOnpress, customStyle }) => {
     return (
 
-        <TouchableOpacity disabled={disabled} onPress={handleOnpress} style={{...styles.container,...customStyle}} >
-            
-                <Text
-                    style={styles.text}
-                >
-                    {title}
-                </Text>
+        <TouchableOpacity disabled={disabled} onPress={handleOnpress} style={[{ ...styles.container, ...customStyle }, {backgroundColor: disabled ? colors.grey : colors.secondary}]} >
+
+            <Text
+                style={styles.text}
+            >
+                {title}
+            </Text>
         </TouchableOpacity>
     )
 }
@@ -23,14 +23,14 @@ const styles = StyleSheet.create({
     container: {
         borderRadius: PixelRatio.roundToNearestPixel(10),
         padding: 10,
-        elevation:10,
-        backgroundColor:colors.secondary
+        elevation: 10,
+        // backgroundColor: colors.secondary
     },
     text: {
         color: colors.white,
         fontSize: PixelRatio.roundToNearestPixel(18),
         fontWeight: '700',
         textAlign: "center",
-        letterSpacing:1,
+        letterSpacing: 1,
     }
 })
