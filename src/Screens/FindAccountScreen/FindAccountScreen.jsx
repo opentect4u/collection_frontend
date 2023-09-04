@@ -7,7 +7,10 @@ import SearchCard from '../../Components/SearchCard'
 import axios from 'axios'
 // import { BASE_URL } from '../../Config/config'
 import { AppStore } from '../../Context/AppContext'
-import { REACT_APP_BASE_URL } from "@env"
+// import { REACT_APP_BASE_URL } from "@env"
+
+const REACT_APP_BASE_URL = "http://192.168.1.218:8002/v1"
+
 const FindAccountScreen = ({ navigation }) => {
 
   const [searchValue, changeSearchValue] = useState(() => '')

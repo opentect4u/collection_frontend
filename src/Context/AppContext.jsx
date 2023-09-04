@@ -2,7 +2,9 @@ import { createContext, useEffect, useState } from 'react'
 import axios from "axios"
 import DeviceInfo from 'react-native-device-info'
 import { ToastAndroid } from 'react-native'
-import { REACT_APP_BASE_URL } from "@env"
+// import { REACT_APP_BASE_URL } from "@env"
+
+const REACT_APP_BASE_URL = "http://192.168.1.218:8002/v1"
 
 export const AppStore = createContext()
 
@@ -12,7 +14,7 @@ const AppContext = ({ children }) => {
     const [agentName, setAgentName] = useState(() => "")
     const [agentEmail, setAgentEmail] = useState(() => "")
     const [agentPhoneNumber, setAgentPhoneNumber] = useState(() => "")
-    const [bankId, setBankId] = useState(() => "")
+    const [bankId, setBankId] = useState(() => 0)
     const [bankName, setBankName] = useState(() => "")
     const [branchName, setBranchName] = useState(() => "")
     const [branchCode, setBranchCode] = useState(() => "")
@@ -25,6 +27,9 @@ const AppContext = ({ children }) => {
 
     const [modifiedAt, setModifiedAt] = useState(() => new Date())
     const [todayDateFromServer, setTodayDateFromServer] = useState(() => new Date())
+
+    const [collectionFlag, setCollectionFlag] = useState("")
+    const [endFlag, setEndFlag] = useState("")
 
     const [next, setNext] = useState(() => false)
 
@@ -122,13 +127,38 @@ const AppContext = ({ children }) => {
         })
     }
 
+    const getFlagsRequest = async () => {
+        const obj = { bank_id: bankId, branch_code: branchCode, agent_code: userId }
+        await axios.post(`${REACT_APP_BASE_URL}/user/collection_checked`, obj, {
+            headers: {
+                Accept: 'application/json',
+            }
+        })
+            .then(res => {
+                setCollectionFlag(res.data.data.msg[0].coll_flag)
+                setEndFlag(res.data.data.msg[0].end_flag)
+                console.log("FLAGGGGGSSSS CF: ", res.data.data.msg[0].coll_flag)
+                console.log("FLAGGGGGSSSS EF: ", res.data.data.msg[0].end_flag)
+            })
+            .catch(err => {
+                console.log("flags err", err.response.data);
+                ToastAndroid.showWithGravityAndOffset(
+                    'Error COLLECTION CHECKED',
+                    ToastAndroid.SHORT,
+                    ToastAndroid.CENTER,
+                    25,
+                    50,
+                );
+            });
+    }
+
     const logout = () => {
         setIsLogin(false)
         setPasscode('')
     }
 
     return (
-        <AppStore.Provider value={{ isLogin, setIsLogin, logout, userId, agentName, agentEmail, agentPhoneNumber, login, getUserId, deviceId, setDeviceID, passcode, setPasscode, next, setNext, bankId, bankName, branchName, branchCode, maximumAmount, totalCollection, receiptNumber, holidayLock, modifiedAt, todayDateFromServer }}>
+        <AppStore.Provider value={{ isLogin, setIsLogin, logout, userId, agentName, agentEmail, agentPhoneNumber, login, getUserId, deviceId, setDeviceID, passcode, setPasscode, next, setNext, bankId, bankName, branchName, branchCode, maximumAmount, totalCollection, receiptNumber, holidayLock, modifiedAt, todayDateFromServer, getFlagsRequest, collectionFlag, endFlag }}>
             {children}
         </AppStore.Provider>
     )

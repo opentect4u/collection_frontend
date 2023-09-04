@@ -8,7 +8,7 @@ import {
   Pressable,
   ToastAndroid,
 } from 'react-native';
-import { useContext, useState } from 'react'
+import { useContext, useState, useEffect } from 'react'
 import { colors } from '../../Resources/colors'
 import CustomHeader from '../../Components/CustomHeader'
 import {
@@ -24,7 +24,7 @@ import mainNavigationRoutes from '../../Routes/NavigationRoutes'
 import { AppStore } from '../../Context/AppContext';
 const AccountDetails = ({ navigation, route }) => {
   const [collectionMoney, setCollectionMoney] = useState(() => 0)
-  const { modifiedAt, todayDateFromServer, holidayLock } = useContext(AppStore)
+  const { modifiedAt, todayDateFromServer, holidayLock, getFlagsRequest, collectionFlag, endFlag } = useContext(AppStore)
 
   const { item } = route.params;
 
@@ -36,7 +36,12 @@ const AccountDetails = ({ navigation, route }) => {
     ['Current Balance', item?.current_balance],
   ]
 
+  useEffect(() => {
+    getFlagsRequest()
+  }, [])
+
   const handlePreviewData = () => {
+
     if (!collectionMoney || collectionMoney == 0) {
       ToastAndroid.showWithGravityAndOffset(
         'Please Add Some Ammount',
@@ -51,7 +56,7 @@ const AccountDetails = ({ navigation, route }) => {
     navigation.navigate(mainNavigationRoutes.accountPreview, {
       item: item,
       money: collectionMoney,
-    });
+    })
   }
 
   const checkHolidayLock = () => {
@@ -69,6 +74,13 @@ const AccountDetails = ({ navigation, route }) => {
   }
 
   console.log(checkHolidayLock())
+
+
+
+  const checkIsCollectionEnded = () => {
+    if (collectionFlag == "Y" && endFlag == "N") return false
+    else if (collectionFlag == "N" && endFlag == "Y") return true
+  }
 
   return (
     <View>
@@ -95,7 +107,7 @@ const AccountDetails = ({ navigation, route }) => {
               keyboardType={'numeric'}
               placeholder={'Enter Valid Amount'}
               label={'Collection Ammount'}
-              value={collectionMoney} 
+              value={collectionMoney}
               handleChange={setCollectionMoney}
             />
             <View style={styles.buttonContainer}>
@@ -114,7 +126,7 @@ const AccountDetails = ({ navigation, route }) => {
 
 
               {
-                checkHolidayLock() ? (
+                (checkHolidayLock() || checkIsCollectionEnded()) ? (
                   <ButtonComponent
                     title={'Preview / Save'}
                     customStyle={{ marginTop: 10, width: '60%' }}
