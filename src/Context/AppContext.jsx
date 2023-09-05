@@ -29,6 +29,8 @@ const AppContext = ({ children }) => {
     const [collectionFlag, setCollectionFlag] = useState("")
     const [endFlag, setEndFlag] = useState("")
 
+    const [totalDepositedAmount, setTotalDepositedAmount] = useState(() => 0)
+
     const [next, setNext] = useState(() => false)
 
     useEffect(() => {
@@ -44,9 +46,11 @@ const AppContext = ({ children }) => {
         const obj = {
             device_id: deviceId, user_id: userId, password: passcode
         }
+
+        console.log("OBJJJJJJ===>", obj)
         await axios.post(`${REACT_APP_BASE_URL}/user/login`, obj, {
             headers: {
-                Accept: 'application/json',
+                Accept: 'application/json'
             }
         }).then(res => {
             setIsLogin(true)
@@ -67,6 +71,7 @@ const AppContext = ({ children }) => {
             setModifiedAt(new Date(res.data.success.setting.msg[0].modified_at))
             setHolidayLock(res.data.success.setting.msg[0].holiday_lock)
         }).catch(err => {
+            console.error("========>>>>>>>>", err.response.data)
             setIsLogin(false)
             setPasscode('')
             ToastAndroid.showWithGravityAndOffset(
@@ -76,7 +81,7 @@ const AppContext = ({ children }) => {
                 25,
                 50,
             )
-            console.error("Error:", err.response)
+
         })
     }
 
@@ -108,7 +113,7 @@ const AppContext = ({ children }) => {
 
         await axios.post(`${REACT_APP_BASE_URL}/user/my_agent`, obj, {
             headers: {
-                Accept: 'application/json',
+                Accept: 'application/json'
             }
         }).then(res => {
             console.log("User ID: ", res.data.success.msg[0].user_id)
@@ -129,7 +134,7 @@ const AppContext = ({ children }) => {
         const obj = { bank_id: bankId, branch_code: branchCode, agent_code: userId }
         await axios.post(`${REACT_APP_BASE_URL}/user/collection_checked`, obj, {
             headers: {
-                Accept: 'application/json',
+                Accept: 'application/json'
             }
         })
             .then(res => {
@@ -150,13 +155,26 @@ const AppContext = ({ children }) => {
             });
     }
 
+    const getTotalDepositAmount = async () => {
+        const obj = { bank_id: bankId, branch_code: branchCode, agent_code: userId }
+
+        await axios.post(`${REACT_APP_BASE_URL}/user/total_collection`, obj, {
+            headers: {
+                Accept: 'application/json'
+            }
+        }).then(res => {
+            console.log(res.data.success.msg[0].deposit_amount)
+            setTotalDepositedAmount(res.data.success.msg[0].deposit_amount)
+        })
+    }
+    
     const logout = () => {
         setIsLogin(false)
         setPasscode('')
     }
 
     return (
-        <AppStore.Provider value={{ isLogin, setIsLogin, logout, userId, agentName, agentEmail, agentPhoneNumber, login, getUserId, deviceId, setDeviceID, passcode, setPasscode, next, setNext, bankId, bankName, branchName, branchCode, maximumAmount, totalCollection, receiptNumber, holidayLock, modifiedAt, todayDateFromServer, getFlagsRequest, collectionFlag, endFlag }}>
+        <AppStore.Provider value={{ isLogin, setIsLogin, logout, userId, agentName, agentEmail, agentPhoneNumber, login, getUserId, deviceId, setDeviceID, passcode, setPasscode, next, setNext, bankId, bankName, branchName, branchCode, maximumAmount, totalCollection, receiptNumber, holidayLock, modifiedAt, todayDateFromServer, getFlagsRequest, collectionFlag, endFlag, getTotalDepositAmount, totalDepositedAmount }}>
             {children}
         </AppStore.Provider>
     )

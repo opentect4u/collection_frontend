@@ -24,7 +24,7 @@ import { REACT_APP_BASE_URL } from "../../Config/config"
 import mainNavigationRoutes from '../../Routes/NavigationRoutes'
 
 const AccountPreview = ({ navigation, route }) => {
-  const { userId } = useContext(AppStore)
+  const { userId, getTotalDepositAmount, totalDepositedAmount } = useContext(AppStore)
   const { item, money } = route.params
 
   // const [addedMoney, setAddedMoney] = useState(() => 0)
@@ -40,17 +40,28 @@ const AccountPreview = ({ navigation, route }) => {
   ];
 
   const sendCollectedMoney = async () => {
-    const obj = { receipt_no: 1, bank_id: item?.bank_id, branch_code: item?.branch_code, agent_code: userId, transaction_date: new Date().toISOString(), account_type: item?.acc_type, product_code: "Abc", account_number: item?.account_number, deposit_amount: parseFloat(money), collection_by: userId }
+    const obj = { receipt_no: 1, bank_id: item?.bank_id, branch_code: item?.branch_code, agent_code: userId, account_holder_name: item?.customer_name, transaction_date: new Date().toISOString(), account_type: item?.acc_type, product_code: "Abc", account_number: item?.account_number, deposit_amount: parseFloat(money), collection_by: userId }
     console.log("===========", obj)
     await axios.post(`${REACT_APP_BASE_URL}/user/transaction`, obj, {
       headers: {
-        Accept: 'application/json',
+        Accept: 'application/json'
       }
     }).then(res => {
       console.log("###### Preview: ", res.data)
     }).catch(err => {
       console.log(err.response.data)
     })
+  }
+
+  useEffect(() => {
+    getTotalDepositAmount()
+  }, [])
+  
+
+  const sendFinalCollectedMoney = () => {
+    getTotalDepositAmount()
+
+    console.log("Total Deposited Amount", totalDepositedAmount)
   }
 
   return (
@@ -89,7 +100,7 @@ const AccountPreview = ({ navigation, route }) => {
               title={'Save'}
               customStyle={{ marginTop: 10, width: '40%' }}
               handleOnpress={() => {
-                sendCollectedMoney()
+                sendFinalCollectedMoney()
                 navigation.navigate(mainNavigationRoutes.home);
                 alert(`Receipt No is ${"225412202421"}`)
               }}

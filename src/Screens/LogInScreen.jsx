@@ -54,7 +54,7 @@ const LogInScreen = ({ navigation }) => {
         />
         <View>
           {/* Wellcome gretting */}
-          <Text style={styles.grettingText}>Welcome to {'Demo'}</Text>
+          <Text style={styles.grettingText}>Welcome to {'Data Bank'}</Text>
           {/* manual text */}
           <Text style={styles.manual}>Login with your pin</Text>
         </View>
