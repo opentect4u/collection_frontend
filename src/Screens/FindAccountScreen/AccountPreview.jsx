@@ -6,7 +6,7 @@ import {
   Modal,
   Pressable,
 } from 'react-native'
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { colors } from '../../Resources/colors'
 import CustomHeader from '../../Components/CustomHeader'
 import {
@@ -53,16 +53,16 @@ const AccountPreview = ({ navigation, route }) => {
     })
   }
 
-  useEffect(() => {
-    getTotalDepositAmount()
-  }, [])
+  // useEffect(() => {
+  //   getTotalDepositAmount()
+  // }, [])
   
 
-  const sendFinalCollectedMoney = () => {
-    getTotalDepositAmount()
+  // const sendFinalCollectedMoney = () => {
+  //   getTotalDepositAmount()
 
-    console.log("Total Deposited Amount", totalDepositedAmount)
-  }
+  //   console.log("Total Deposited Amount", totalDepositedAmount)
+  // }
 
   return (
     <View>
@@ -100,7 +100,7 @@ const AccountPreview = ({ navigation, route }) => {
               title={'Save'}
               customStyle={{ marginTop: 10, width: '40%' }}
               handleOnpress={() => {
-                sendFinalCollectedMoney()
+                sendCollectedMoney()
                 navigation.navigate(mainNavigationRoutes.home);
                 alert(`Receipt No is ${"225412202421"}`)
               }}
