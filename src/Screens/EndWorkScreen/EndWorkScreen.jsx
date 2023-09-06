@@ -18,8 +18,7 @@ import { REACT_APP_BASE_URL } from "@env"
 const EndWorkScreen = () => {
   const [isButtonEnabled, setIsButtonEnabled] = useState(() => false)
   const [endScreenPassword, setEndScreenPassword] = useState(() => "")
-  const { userId, agentName, passcode, deviceId, bankId, branchCode, totalCollection, receiptNumber } = useContext(AppStore)
-
+  const { userId, agentName, passcode, deviceId, bankId, branchCode, totalCollection, receiptNumber, maximumAmount } = useContext(AppStore)
 
 
   const tableData = [
@@ -28,7 +27,7 @@ const EndWorkScreen = () => {
     ['Branch Code', branchCode],
     ['Max Collection', receiptNumber],
     ['Today Collection', totalCollection],
-    ['Remaing Collection', '₹20000'],
+    ['Remaing Collection', maximumAmount - totalCollection],
   ]
 
 

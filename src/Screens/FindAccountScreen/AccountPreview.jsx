@@ -5,6 +5,7 @@ import {
   ScrollView,
   Modal,
   Pressable,
+  ToastAndroid,
 } from 'react-native'
 import { useContext, useEffect, useState } from "react"
 import { colors } from '../../Resources/colors'
@@ -27,7 +28,7 @@ const AccountPreview = ({ navigation, route }) => {
 
   const [receiptNumber, setReceiptNumber] = useState(() => "")
 
-  const { userId, getTotalDepositAmount, totalDepositedAmount } = useContext(AppStore)
+  const { userId, maximumAmount, getTotalDepositAmount, totalDepositedAmount } = useContext(AppStore)
   const { item, money } = route.params
 
   // const [addedMoney, setAddedMoney] = useState(() => 0)
@@ -57,6 +58,21 @@ const AccountPreview = ({ navigation, route }) => {
     }).catch(err => {
       console.log(err.response.data)
     })
+  }
+
+  const handleSave = () => {
+    getTotalDepositAmount()
+    if (!(maximumAmount < (money + totalDepositedAmount))) {
+      sendCollectedMoney()
+    } else {
+      ToastAndroid.showWithGravityAndOffset(
+        'You cannot collect money at this time.',
+        ToastAndroid.SHORT,
+        ToastAndroid.CENTER,
+        25,
+        50,
+      )
+    }
   }
 
   // useEffect(() => {
@@ -106,7 +122,7 @@ const AccountPreview = ({ navigation, route }) => {
               title={'Save'}
               customStyle={{ marginTop: 10, width: '40%' }}
               handleOnpress={() => {
-                sendCollectedMoney()
+                handleSave()
               }}
             />
           </View>
