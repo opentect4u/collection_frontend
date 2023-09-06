@@ -1,4 +1,5 @@
 import { StyleSheet, Text, View, PixelRatio, ScrollView, RefreshControl } from 'react-native'
+import { useFocusEffect } from '@react-navigation/native'
 import { useState, useEffect, useContext, useCallback } from 'react'
 
 import {
@@ -49,6 +50,23 @@ const Home = () => {
       ]
     }, 2000)
   }, [])
+
+  // useFocusEffect(() => {
+  //   setRefreshing(true)
+  //   getTotalDepositAmount()
+  //   setTimeout(() => {
+  //     setRefreshing(false)
+  //     tableData = [
+  //       ['Bank', bankName],
+  //       ['Branch', branchName],
+  //       ['Agent Code', userId],
+  //       ['Agent Name', agentName],
+  //       ['Date', currentDateTime.toLocaleDateString()],
+  //       ['Time', currentDateTime.toLocaleTimeString()],
+  //       ['Total Collection', totalDepositedAmount.toFixed(2)],
+  //     ]
+  //   }, 2000)
+  // }, [])
 
 
   return (
