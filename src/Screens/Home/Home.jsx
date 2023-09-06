@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View, PixelRatio, ScrollView, AppState } from 'react-native'
-import { useState, useEffect, useContext } from 'react'
+import { StyleSheet, Text, View, PixelRatio, ScrollView, RefreshControl } from 'react-native'
+import { useState, useEffect, useContext, useCallback } from 'react'
 
 import {
   Table,
@@ -10,9 +10,11 @@ import CustomHeader from '../../Components/CustomHeader'
 import { AppStore } from '../../Context/AppContext'
 const Home = () => {
 
-  const { userId, agentName, bankName, branchName, totalCollection } = useContext(AppStore)
+  const { userId, agentName, bankName, branchName, totalCollection, getTotalDepositAmount, totalDepositedAmount } = useContext(AppStore)
 
   const [currentDateTime, setCurrentDateTime] = useState(new Date())
+
+  const [refreshing, setRefreshing] = useState(false)
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -21,7 +23,7 @@ const Home = () => {
     return () => clearInterval(timer)
   }, [])
 
-  const tableData = [
+  let tableData = [
     ['Bank', bankName],
     ['Branch', branchName],
     ['Agent Code', userId],
@@ -30,6 +32,25 @@ const Home = () => {
     ['Time', currentDateTime.toLocaleTimeString()],
     ['Total Collection', totalCollection.toFixed(2)],
   ]
+
+  const onRefresh = useCallback(() => {
+    setRefreshing(true)
+    getTotalDepositAmount()
+    setTimeout(() => {
+      setRefreshing(false)
+      tableData = [
+        ['Bank', bankName],
+        ['Branch', branchName],
+        ['Agent Code', userId],
+        ['Agent Name', agentName],
+        ['Date', currentDateTime.toLocaleDateString()],
+        ['Time', currentDateTime.toLocaleTimeString()],
+        ['Total Collection', totalDepositedAmount.toFixed(2)],
+      ]
+    }, 2000)
+  }, [])
+
+
   return (
     <>
       <View style={{ flex: 1 }}>
@@ -53,7 +74,9 @@ const Home = () => {
             margin: 20,
             borderRadius: 10,
           }}>
-          <ScrollView>
+          <ScrollView refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          }>
             <Text style={styles.todayCollection}>Agent Information</Text>
             <Table
               borderStyle={{ borderWidth: 2, borderColor: colors.primary, borderRadius: 10 }}
