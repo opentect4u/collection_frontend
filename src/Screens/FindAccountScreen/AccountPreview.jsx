@@ -24,6 +24,9 @@ import { REACT_APP_BASE_URL } from "../../Config/config"
 import mainNavigationRoutes from '../../Routes/NavigationRoutes'
 
 const AccountPreview = ({ navigation, route }) => {
+
+  const [receiptNumber, setReceiptNumber] = useState(() => "")
+
   const { userId, getTotalDepositAmount, totalDepositedAmount } = useContext(AppStore)
   const { item, money } = route.params
 
@@ -40,7 +43,7 @@ const AccountPreview = ({ navigation, route }) => {
   ];
 
   const sendCollectedMoney = async () => {
-    const obj = { receipt_no: 1, bank_id: item?.bank_id, branch_code: item?.branch_code, agent_code: userId, account_holder_name: item?.customer_name, transaction_date: new Date().toISOString(), account_type: item?.acc_type, product_code: item?.product_code, account_number: item?.account_number, deposit_amount: parseFloat(money), collection_by: userId }
+    const obj = { bank_id: item?.bank_id, branch_code: item?.branch_code, agent_code: userId, account_holder_name: item?.customer_name, transaction_date: new Date().toISOString(), account_type: item?.acc_type, product_code: item?.product_code, account_number: item?.account_number, deposit_amount: parseFloat(money), collection_by: userId }
     console.log("===========", obj)
     await axios.post(`${REACT_APP_BASE_URL}/user/transaction`, obj, {
       headers: {
@@ -48,6 +51,9 @@ const AccountPreview = ({ navigation, route }) => {
       }
     }).then(res => {
       console.log("###### Preview: ", res.data)
+      alert(`Receipt No is ${res.data.receipt_no}`)
+      setReceiptNumber(res.data.receipt_no)
+      navigation.navigate(mainNavigationRoutes.home)
     }).catch(err => {
       console.log(err.response.data)
     })
@@ -56,7 +62,7 @@ const AccountPreview = ({ navigation, route }) => {
   // useEffect(() => {
   //   getTotalDepositAmount()
   // }, [])
-  
+
 
   // const sendFinalCollectedMoney = () => {
   //   getTotalDepositAmount()
@@ -101,8 +107,6 @@ const AccountPreview = ({ navigation, route }) => {
               customStyle={{ marginTop: 10, width: '40%' }}
               handleOnpress={() => {
                 sendCollectedMoney()
-                navigation.navigate(mainNavigationRoutes.home);
-                alert(`Receipt No is ${"225412202421"}`)
               }}
             />
           </View>

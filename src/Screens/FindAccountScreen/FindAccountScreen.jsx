@@ -62,8 +62,8 @@ const FindAccountScreen = ({ navigation }) => {
         {/* Search Component */}
         <View style={styles.searchContainer}>
           <InputComponent
-            label={'Account No.'}
-            placeholder={'Enter Account No.'}
+            label={'Account No. / Name'}
+            placeholder={'Enter Account No. / Name'}
             value={searchValue}
             handleChange={changeSearchValue}
           />
