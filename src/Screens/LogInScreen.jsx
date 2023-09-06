@@ -67,14 +67,15 @@ const LogInScreen = ({ navigation }) => {
           {!next && (
             <View>
               {/* DeviceId */}
-              <InputComponent
-                // handleChange={() => { }}
-                value={deviceId ? deviceId : 'Fetching ID...'}
-                placeholder={Strings.loginPlaceHolder}
-                label={'Device ID'}
-                readOnly={true}
-              />
-
+              {!userId && (
+                <InputComponent
+                  // handleChange={() => { }}
+                  value={deviceId ? deviceId : 'Fetching ID...'}
+                  placeholder={Strings.loginPlaceHolder}
+                  label={'Device ID'}
+                  readOnly={true}
+                />
+              )}
               {/* Agent ID */}
               <InputComponent
                 // handleChange={handlePressOnFirstScreen}
@@ -88,6 +89,7 @@ const LogInScreen = ({ navigation }) => {
                 <ButtonComponent
                   title={'Next'}
                   handleOnpress={() => handlePressOnFirstScreen()}
+                  customStyle={{ width: "80%" }}
                 />
               </View>
             </View>
@@ -134,11 +136,23 @@ const LogInScreen = ({ navigation }) => {
               </TouchableOpacity>
               <View style={styles.buttonContainer}>
                 <ButtonComponent
-                  title={'Next'}
+                  title={'Back'}
+                  handleOnpress={() => {
+                    setNext(!next)
+                  }}
+                  customStyle={{
+                    marginTop: 10,
+                    backgroundColor: colors.danger,
+                    width: '40%',
+                  }}
+                />
+                <ButtonComponent
+                  title={'Submit'}
                   handleOnpress={() => {
                     login()
                     console.log(isLogin)
                   }}
+                  customStyle={{ marginTop: 10, width: '40%' }}
                 />
               </View>
             </View>
@@ -211,8 +225,12 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 100,
   },
   buttonContainer: {
-    width: '100%',
-    marginTop: 20,
+    width: "100px",
+    marginVertical: 5,
+    padding: 5,
+    borderRadius: 5,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
   },
   resetText: {
     textAlign: 'center',

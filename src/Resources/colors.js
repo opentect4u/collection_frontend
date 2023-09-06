@@ -16,4 +16,5 @@ export const colors = {
     primary: "#dd7c37",
     secondary: "#159b43",
     tertiary: "#06038D",
+    danger: "#fc1726",
 }
