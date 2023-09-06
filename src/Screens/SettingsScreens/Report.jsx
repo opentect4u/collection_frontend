@@ -1,10 +1,9 @@
 import { useContext, useEffect, useState } from 'react'
-import { Button, PixelRatio, ScrollView, StyleSheet, Text, View } from 'react-native'
+import { Button, PixelRatio, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import DateTimePickerModal from "react-native-modal-datetime-picker"
-import DateTimePicker from '@react-native-community/datetimepicker';
-import { AppStore } from '../../Context/AppContext';
-import CustomHeader from '../../Components/CustomHeader';
-import { colors } from '../../Resources/colors';
+import { AppStore } from '../../Context/AppContext'
+import CustomHeader from '../../Components/CustomHeader'
+import { colors } from '../../Resources/colors'
 import {
   Table,
   Rows,
@@ -22,6 +21,23 @@ const Report = () => {
   const { userId, agentName, bankName, branchName, totalCollection } = useContext(AppStore)
 
   const [currentDateTime, setCurrentDateTime] = useState(new Date())
+
+  // const [date, setDate] = useState(() => new Date())
+  const [isStartingDatePickerVisible, setIsStartingDatePickerVisible] = useState(() => false)
+  const [isEndingDatePickerVisible, setIsEndingDatePickerVisible] = useState(() => false)
+
+  const showStartingDatePicker = () => {
+    setIsStartingDatePickerVisible(true)
+  }
+
+  const hideStartingDatePicker = () => {
+    setIsStartingDatePickerVisible(false)
+  }
+
+  const handleConfirmPickedDate = date => {
+    console.warn("PICKED DATE >>>>>>>>>>>", date)
+    hideStartingDatePicker()
+  }
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -65,15 +81,19 @@ const Report = () => {
   return (
     <View style={{ flex: 1 }}>
       <CustomHeader />
-      <View>
-        {/* <DateTimePicker
-          testID="dateTimePicker"
-          value={mydateFrom}
-          mode={displaymodeFrom}
-          is24Hour={true}
-          display="default"
-          onChange={changeSelectedDateFrom}
-        /> */}
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <TouchableOpacity onPress={() => showStartingDatePicker()} style={{ width: "50%", height: 50, borderWidth: .5, borderRadius: 20, alignSelf: "center", justifyContent: "center", alignItems: "center" }}>
+          <Text>Select Starting Date</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={{ width: "50%", height: 50, borderWidth: .5, borderRadius: 20, alignSelf: "center", justifyContent: "center", alignItems: "center" }}>
+          <Text>Select Ending Date</Text>
+        </TouchableOpacity>
+        <DateTimePickerModal
+          isVisible={isStartingDatePickerVisible}
+          mode="date"
+          onConfirm={handleConfirmPickedDate}
+          onCancel={hideStartingDatePicker}
+        />
       </View>
 
       <View style={{
@@ -88,7 +108,7 @@ const Report = () => {
           <Table
             borderStyle={{ borderWidth: 2, borderColor: colors.primary, borderRadius: 10 }}
             style={{ backgroundColor: colors.white }}>
-              <Row data={tableHead} textStyle={styles.head} />
+            <Row data={tableHead} textStyle={styles.head} />
             <Rows data={tableData} textStyle={styles.text} />
           </Table>
         </ScrollView>
@@ -104,13 +124,13 @@ const styles = StyleSheet.create({
     margin: 6,
     color: colors.black,
     fontWeight: '400',
-    fontSize: 18,
+    fontSize: 10,
   },
   head: {
     margin: 6,
     color: colors.black,
     fontWeight: '900',
-    fontSize: 18,
+    fontSize: 10,
   },
   todayCollection: {
     backgroundColor: colors.secondary,
