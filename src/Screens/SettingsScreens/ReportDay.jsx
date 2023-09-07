@@ -11,12 +11,6 @@ import {
 } from 'react-native-table-component'
 import axios from 'axios'
 import { REACT_APP_BASE_URL } from '../../Config/config'
-// import { Dropdown } from 'react-native-element-dropdown'
-
-// const data = [
-//   { label: 'Day Wise', value: 'D' },
-//   { label: 'Type Wise', value: 'T' },
-// ]
 
 const ReportDay = () => {
 
@@ -28,10 +22,7 @@ const ReportDay = () => {
   const [isStartingDatePickerVisible, setIsStartingDatePickerVisible] = useState(() => false)
   const [isEndingDatePickerVisible, setIsEndingDatePickerVisible] = useState(() => false)
 
-  const [serialNo, setSerialNo] = useState(() => 0)
   const [dayScrollReportArray, setDayScrollReportArray] = useState(() => [])
-
-  const [refreshing, setRefreshing] = useState(false)
 
   const showStartingDatePicker = () => {
     setIsStartingDatePickerVisible(true)

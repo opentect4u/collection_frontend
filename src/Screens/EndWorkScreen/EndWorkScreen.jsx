@@ -13,7 +13,7 @@ import ButtonComponent from '../../Components/ButtonComponent'
 import MpinComponent from '../../Components/MpinComponent'
 import { AppStore } from '../../Context/AppContext'
 import axios from 'axios'
-import { REACT_APP_BASE_URL } from "@env"
+import { REACT_APP_BASE_URL } from "../../Config/config"
 
 const EndWorkScreen = () => {
   const [isButtonEnabled, setIsButtonEnabled] = useState(() => false)
@@ -40,7 +40,7 @@ const EndWorkScreen = () => {
         Accept: 'application/json',
       }
     }).then(res => {
-      console.log("###### Preview: ", res.data)
+      // console.log("###### Preview: ", res.data)
       ToastAndroid.showWithGravityAndOffset(
         "Your work has been submitted.",
         ToastAndroid.SHORT,
@@ -65,11 +65,13 @@ const EndWorkScreen = () => {
       if (endScreenPassword === passcode) {
         endCollection()
         // setIsButtonEnabled(true)
+        setEndScreenPassword("")
       } else {
         alert('Invalid Password')
       }
     } catch (error) {
       console.log(error)
+      setEndScreenPassword("")
     }
   }
 
@@ -81,9 +83,9 @@ const EndWorkScreen = () => {
       <View style={styles.logoContainer}>
         <View style={{ width: '100%' }}>
           {/* Wellcome gretting */}
-          <Text style={styles.grettingText}>Welcome To {'Demo'}</Text>
+          <Text style={styles.grettingText}>Welcome To {'Data Bank'}</Text>
           {/* manual text */}
-          <Text style={styles.manual}>Hello,{'User'}</Text>
+          <Text style={styles.manual}>Hello,{agentName}</Text>
         </View>
       </View>
       <View >
