@@ -10,7 +10,9 @@ const mainNavigationRoutes = {
     profileScreen:'profileScreen',
     endWorkScreen:'EndWorkScreen',
     changePinScreen:'ChangePinScreen',
-    reportScreen:'ReportScreen',
+    reportDayScreen:'ReportDayScreen',
+    reportTypeScreen:'ReportTypeScreen',
+    reportChooseScreen: 'ReportChooseScreen',
     notificationScreen:"NotificationScreen",
 }
 

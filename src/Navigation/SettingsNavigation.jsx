@@ -5,8 +5,10 @@ import SettingScreen from '../Screens/SettingsScreens/SettingScreen'
 import Profile from '../Screens/SettingsScreens/Profile'
 import ChangePin from '../Screens/SettingsScreens/ChangePin'
 import EndWork from '../Screens/SettingsScreens/EndWork'
-import Report from '../Screens/SettingsScreens/Report'
+import ReportDay from '../Screens/SettingsScreens/ReportDay'
+import ReportChoose from '../Screens/SettingsScreens/ReportChoose'
 import NotificationScreen from '../Screens/Notification/NotificationScreen'
+import ReportType from '../Screens/SettingsScreens/ReportType'
 
 const Stack = createNativeStackNavigator();
 
@@ -34,8 +36,18 @@ const SettingsNavigation = () => {
         />
 
         <Stack.Screen
-          name={mainNavigationRoutes.reportScreen}
-          component={Report}
+          name={mainNavigationRoutes.reportDayScreen}
+          component={ReportDay}
+        />
+
+        <Stack.Screen
+          name={mainNavigationRoutes.reportTypeScreen}
+          component={ReportType}
+        />
+
+        <Stack.Screen
+          name={mainNavigationRoutes.reportChooseScreen}
+          component={ReportChoose}
         />
 
         <Stack.Screen

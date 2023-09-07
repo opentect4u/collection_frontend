@@ -40,7 +40,7 @@ const SettingScreen = ({navigation}) => {
         </TouchableOpacity>
 
         <TouchableOpacity
-          onPress={() => navigation.navigate(mainNavigationRoutes.reportScreen)}
+          onPress={() => navigation.navigate(mainNavigationRoutes.reportChooseScreen)}
           style={styles.cardContainer}>
           {/* Icon */}
           {icon.report(colors.light_sea_green, 45)}
