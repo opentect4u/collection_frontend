@@ -24,6 +24,8 @@ const ReportDay = () => {
 
   const [dayScrollReportArray, setDayScrollReportArray] = useState(() => [])
 
+  const [totalAmount, setTotalAmount] = useState(() => 0)
+
   const showStartingDatePicker = () => {
     setIsStartingDatePickerVisible(true)
   }
@@ -66,6 +68,7 @@ const ReportDay = () => {
       from_date: startingDate,
       to_date: endingDate
     }
+    let totalDepositedAmount = 0
     await axios.post(`${REACT_APP_BASE_URL}/user/day_scroll_report`, obj, {
       headers: {
         Accept: 'application/json'
@@ -73,10 +76,12 @@ const ReportDay = () => {
     }).then(res => {
       (res.data.success.msg).forEach((item, i) => {
         let rowArr = [i + 1, item.date, item.account_type, item.account_number, item.account_holder_name, item.deposit_amount]
+        totalDepositedAmount += item.deposit_amount
         console.log("ITEMMM TABLEEE=====", rowArr)
         tableData.push(...[rowArr])
       })
-
+      
+      setTotalAmount(totalDepositedAmount)
       console.log("++++++ TABLE DATA ++++++++", tableData)
       setDayScrollReportArray(tableData)
 
@@ -144,6 +149,7 @@ const ReportDay = () => {
             <Rows data={tableData} textStyle={styles.text} />
           </Table>}
         </ScrollView>
+        <Text>Total Amount: {totalAmount}</Text>
       </View>
     </View>
   )
