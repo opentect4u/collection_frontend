@@ -24,7 +24,7 @@ export default function ReportChoose({ navigation }) {
             {icon.profile(colors.light_sea_green, 45)}
   
             {/* label */}
-            <Text style={styles.label}> Day Wise </Text>
+            <Text style={styles.label}> Day Scroll Report </Text>
           </TouchableOpacity>
   
           <TouchableOpacity
@@ -36,7 +36,7 @@ export default function ReportChoose({ navigation }) {
             {icon.password(colors.light_sea_green, 45)}
   
             {/* label */}
-            <Text style={styles.label}> Type Wise </Text>
+            <Text style={styles.label}> A/c Type Wise Report </Text>
           </TouchableOpacity>
           <View
             style={{
@@ -74,6 +74,7 @@ export default function ReportChoose({ navigation }) {
     label: {
       color: colors.primary,
       padding: 10,
+      textAlign: "center",
       fontSize: PixelRatio.roundToNearestPixel(18),
     },
   });

@@ -1,5 +1,5 @@
-import { useContext, useEffect, useState } from 'react'
-import { Button, PixelRatio, ScrollView, StyleSheet, Text, TouchableOpacity, View, ToastAndroid } from 'react-native'
+import { useContext, useState } from 'react'
+import { PixelRatio, ScrollView, StyleSheet, Text, TouchableOpacity, View, ToastAndroid, Modal } from 'react-native'
 import DateTimePickerModal from "react-native-modal-datetime-picker"
 import { AppStore } from '../../Context/AppContext'
 import CustomHeader from '../../Components/CustomHeader'
@@ -11,49 +11,68 @@ import {
 } from 'react-native-table-component'
 import axios from 'axios'
 import { REACT_APP_BASE_URL } from '../../Config/config'
+import CalendarPicker from 'react-native-calendar-picker'
 
 const ReportDay = () => {
 
   const { userId, bankId, branchCode } = useContext(AppStore)
 
-  const [startingDate, setStartingDate] = useState(() => "From Date") // date in yyyy-mm-dd
-  const [endingDate, setEndingDate] = useState(() => "To Date") // date in yyyy-mm-dd
+  // const [startingDate, setStartingDate] = useState(() => "From Date") // date in yyyy-mm-dd
+  // const [endingDate, setEndingDate] = useState(() => "To Date") // date in yyyy-mm-dd
 
-  const [isStartingDatePickerVisible, setIsStartingDatePickerVisible] = useState(() => false)
-  const [isEndingDatePickerVisible, setIsEndingDatePickerVisible] = useState(() => false)
+  const [selectedStartDate, setSelectedStartDate] = useState(() => new Date())
+  const [selectedEndDate, setSelectedEndDate] = useState(() => new Date())
+
+  const [showModal, setShowModal] = useState(() => false)
+
+  // const [isStartingDatePickerVisible, setIsStartingDatePickerVisible] = useState(() => false)
+  // const [isEndingDatePickerVisible, setIsEndingDatePickerVisible] = useState(() => false)
 
   const [dayScrollReportArray, setDayScrollReportArray] = useState(() => [])
 
   const [totalAmount, setTotalAmount] = useState(() => 0)
 
-  const showStartingDatePicker = () => {
-    setIsStartingDatePickerVisible(true)
-  }
+  const startDate = selectedStartDate ? selectedStartDate.toISOString().slice(0, 10) : "";
+  const endDate = selectedEndDate ? selectedEndDate.toISOString().slice(0, 10) : "";
 
-  const showEndingDatePicker = () => {
-    setIsEndingDatePickerVisible(true)
-  }
+  // const showStartingDatePicker = () => {
+  //   setIsStartingDatePickerVisible(true)
+  // }
 
-  const hideStartingDatePicker = () => {
-    setIsStartingDatePickerVisible(false)
-  }
+  // const showEndingDatePicker = () => {
+  //   setIsEndingDatePickerVisible(true)
+  // }
 
-  const hideEndingDatePicker = () => {
-    setIsEndingDatePickerVisible(false)
-  }
+  // const hideStartingDatePicker = () => {
+  //   setIsStartingDatePickerVisible(false)
+  // }
 
-  const handleConfirmPickedFromDate = date => {
-    console.warn("PICKED DATE >>>>>>>>>>>", date)
-    const modifiedFromDate = new Date(date).toISOString().slice(0, 10)
-    setStartingDate(modifiedFromDate)
-    hideStartingDatePicker()
-  }
+  // const hideEndingDatePicker = () => {
+  //   setIsEndingDatePickerVisible(false)
+  // }
 
-  const handleConfirmPickedToDate = date => {
-    console.warn("PICKED DATE >>>>>>>>>>>", date)
-    const modifiedToDate = new Date(date).toISOString().slice(0, 10)
-    setEndingDate(modifiedToDate)
-    hideEndingDatePicker()
+  // const handleConfirmPickedFromDate = date => {
+  //   console.warn("PICKED DATE >>>>>>>>>>>", date)
+  //   const modifiedFromDate = new Date(date).toISOString().slice(0, 10)
+  //   setStartingDate(modifiedFromDate)
+  //   hideStartingDatePicker()
+  // }
+
+  // const handleConfirmPickedToDate = date => {
+  //   console.warn("PICKED DATE >>>>>>>>>>>", date)
+  //   const modifiedToDate = new Date(date).toISOString().slice(0, 10)
+  //   setEndingDate(modifiedToDate)
+  //   hideEndingDatePicker()
+  // }
+
+  const onDateChange = (date, type) => {
+    if (type === 'END_DATE') {
+      setSelectedEndDate(date)
+      setShowModal(false)
+    } else {
+      setSelectedStartDate(date)
+      setSelectedEndDate(null)
+    }
   }
 
 
@@ -65,8 +84,8 @@ const ReportDay = () => {
       bank_id: bankId,
       branch_code: branchCode,
       agent_code: userId,
-      from_date: startingDate,
-      to_date: endingDate
+      from_date: startDate,
+      to_date: endDate
     }
     let totalDepositedAmount = 0
     await axios.post(`${REACT_APP_BASE_URL}/user/day_scroll_report`, obj, {
@@ -80,7 +99,7 @@ const ReportDay = () => {
         console.log("ITEMMM TABLEEE=====", rowArr)
         tableData.push(...[rowArr])
       })
-      
+
       setTotalAmount(totalDepositedAmount)
       console.log("++++++ TABLE DATA ++++++++", tableData)
       setDayScrollReportArray(tableData)
@@ -98,13 +117,13 @@ const ReportDay = () => {
   }
 
   const handleSubmit = () => {
-    tableData=[];
+    tableData = [];
     getReportsDayScroll()
-    
+
   }
 
 
-  console.log("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<",tableData)
+  console.log("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<", tableData)
   return (
     <View style={{ flex: 1 }}>
       <CustomHeader />
@@ -117,7 +136,7 @@ const ReportDay = () => {
       }}>
         <Text style={styles.todayCollection}>Day Scroll Report</Text>
         <View style={styles.dateWrapper}>
-          <TouchableOpacity onPress={() => showStartingDatePicker()} style={styles.dateButton}>
+          {/* <TouchableOpacity onPress={() => showStartingDatePicker()} style={styles.dateButton}>
             <Text>{startingDate}</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => showEndingDatePicker()} style={styles.dateButton}>
@@ -134,7 +153,31 @@ const ReportDay = () => {
             mode="date"
             onConfirm={handleConfirmPickedToDate}
             onCancel={hideEndingDatePicker}
-          />
+          /> */}
+
+          <TouchableOpacity onPress={() => setShowModal(true)} style={styles.dateButton}>
+            <Text>Show Calendar</Text>
+          </TouchableOpacity>
+          <Modal visible={showModal} animationType='fade'>
+            <View style={{
+              flex: 1,
+              backgroundColor: '#FFFFFF',
+              margin: 20
+            }}>
+              <CalendarPicker
+                startFromMonday={true}
+                allowRangeSelection={true}
+                todayBackgroundColor="tomato"
+                selectedDayColor="dodgerblue"
+                selectedDayTextColor="#FFFFFF"
+                onDateChange={onDateChange}
+              />
+            </View>
+          </Modal>
+        </View>
+        <View>
+          <Text style={{ fontSize: 20, fontWeight: 500 }}>From Date: {startDate}</Text>
+          <Text style={{ fontSize: 20, fontWeight: 500 }}>To Date: {endDate}</Text>
         </View>
         <View>
           <TouchableOpacity onPress={() => handleSubmit()} style={styles.dateButton}>
