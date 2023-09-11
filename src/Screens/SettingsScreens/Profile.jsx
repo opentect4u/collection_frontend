@@ -7,14 +7,14 @@ import { icon } from '../../Resources/Icons'
 import { AppStore } from '../../Context/AppContext'
 const Profile = () => {
 
-  const { userId, agentName, agentEmail, agentPhoneNumber, receiptNumber } = useContext(AppStore)
+  const { userId, agentName, agentEmail, agentPhoneNumber, maximumAmount } = useContext(AppStore)
 
   const tableData = [
     ['Agent Code', userId],
     ['Agent Name', agentName],
     ['Email', agentEmail],
     ['Mobile No.', agentPhoneNumber],
-    ['Max Collection', receiptNumber],
+    ['Maximum Limit (₹)', maximumAmount],
   ];
   return (
     <View style={{ backgroundColor: colors.white }}>
