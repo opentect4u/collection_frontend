@@ -11,7 +11,7 @@ import CustomHeader from '../../Components/CustomHeader'
 import { AppStore } from '../../Context/AppContext'
 const Home = () => {
 
-  const { userId, agentName, bankName, branchName, totalCollection, getTotalDepositAmount, totalDepositedAmount } = useContext(AppStore)
+  const { userId, agentName, bankName, branchName, totalCollection, getTotalDepositAmount, login } = useContext(AppStore)
 
   const [currentDateTime, setCurrentDateTime] = useState(new Date())
 
@@ -39,15 +39,7 @@ const Home = () => {
     getTotalDepositAmount()
     setTimeout(() => {
       setRefreshing(false)
-      tableData = [
-        ['Bank', bankName],
-        ['Branch', branchName],
-        ['Agent Code', userId],
-        ['Agent Name', agentName],
-        ['Date', currentDateTime.toLocaleDateString()],
-        ['Time', currentDateTime.toLocaleTimeString()],
-        ['Total Collection', totalDepositedAmount.toFixed(2)],
-      ]
+      login()
     }, 2000)
   }, [])
 
@@ -56,15 +48,7 @@ const Home = () => {
   //   getTotalDepositAmount()
   //   setTimeout(() => {
   //     setRefreshing(false)
-  //     tableData = [
-  //       ['Bank', bankName],
-  //       ['Branch', branchName],
-  //       ['Agent Code', userId],
-  //       ['Agent Name', agentName],
-  //       ['Date', currentDateTime.toLocaleDateString()],
-  //       ['Time', currentDateTime.toLocaleTimeString()],
-  //       ['Total Collection', totalDepositedAmount.toFixed(2)],
-  //     ]
+  //     login()
   //   }, 2000)
   // }, [])
 

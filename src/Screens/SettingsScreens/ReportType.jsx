@@ -118,7 +118,7 @@ const ReportType = () => {
       }
     }).then(res => {
       (res.data.success.msg).forEach((item, i) => {
-        let rowArr = [i + 1, item.date, item.account_number, item.account_holder_name, item.deposit_amount]
+        let rowArr = [i + 1, item.date.slice(0, 10), item.account_number, item.account_holder_name, item.deposit_amount]
         totalDepositedAmount += item.deposit_amount
         console.log("ITEMMM TABLEEE=====", rowArr)
         tableData.push(...[rowArr])
@@ -212,9 +212,9 @@ const ReportType = () => {
           </Modal>
         </View>
         <View>
-          <View>
-            <Text style={{ fontSize: 20, fontWeight: 500 }}>From Date: {startDate}</Text>
-            <Text style={{ fontSize: 20, fontWeight: 500 }}>To Date: {endDate}</Text>
+          <View style={{justifyContent: "space-around", flexDirection: "row", backgroundColor: "coral", padding: 10, margin: 10, borderRadius: 10}}>
+            <Text style={{ fontSize: 15, fontWeight: 500, color: colors.whiteT, fontWeight: "bold" }}>From: {startDate}</Text>
+            <Text style={{ fontSize: 15, fontWeight: 500, color: colors.whiteT, fontWeight: "bold" }}>To: {endDate}</Text>
           </View>
           {/* <DropdownComponent
             data={data}
