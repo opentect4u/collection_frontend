@@ -149,6 +149,16 @@ const ReportType = () => {
 
   console.log("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<", tableData)
 
+  if (tableData.length === 0) {
+    ToastAndroid.showWithGravityAndOffset(
+      'NO DATA AVAILABLE',
+      ToastAndroid.SHORT,
+      ToastAndroid.CENTER,
+      25,
+      50,
+    )
+  }
+
   console.log("###################", accountType)
   return (
     <View style={{ flex: 1 }}>
