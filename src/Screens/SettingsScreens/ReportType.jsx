@@ -29,7 +29,7 @@ const ReportType = () => {
   // const [isEndingDatePickerVisible, setIsEndingDatePickerVisible] = useState(() => false)
 
   const [typeWiseReportArray, setTypeWiseReportArray] = useState(() => [])
-  const [accountType, setAccountType] = useState(() => null)
+  const [accountType, setAccountType] = useState(() => "")
 
   const [showModal, setShowModal] = useState(() => false)
   const [selectedStartDate, setSelectedStartDate] = useState(() => new Date())
@@ -99,7 +99,7 @@ const ReportType = () => {
   ]
 
 
-  const tableHead = ['Sl No.', 'Date', 'A/c Type', 'A/c No.', 'Name', 'Amount']
+  const tableHead = ['Sl No.', 'Date', 'A/c No.', 'Name', 'Amount']
   let tableData = typeWiseReportArray
 
   const getReportsTypeScroll = async () => {
@@ -118,7 +118,7 @@ const ReportType = () => {
       }
     }).then(res => {
       (res.data.success.msg).forEach((item, i) => {
-        let rowArr = [i + 1, item.date, item.account_type, item.account_number, item.account_holder_name, item.deposit_amount]
+        let rowArr = [i + 1, item.date, item.account_number, item.account_holder_name, item.deposit_amount]
         totalDepositedAmount += item.deposit_amount
         console.log("ITEMMM TABLEEE=====", rowArr)
         tableData.push(...[rowArr])
@@ -192,7 +192,7 @@ const ReportType = () => {
             onCancel={hideEndingDatePicker}
           /> */}
           <TouchableOpacity onPress={() => setShowModal(true)} style={styles.dateButton}>
-            <Text>Show Calendar</Text>
+            <Text style={{color: "white"}}>Show Calendar</Text>
           </TouchableOpacity>
           <Modal visible={showModal} animationType='fade'>
             <View style={{
