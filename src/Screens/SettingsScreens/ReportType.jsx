@@ -128,6 +128,17 @@ const ReportType = () => {
       console.log("++++++ TABLE DATA ++++++++", tableData)
       setTypeWiseReportArray(tableData)
 
+
+      if (tableData.length === 0) {
+        ToastAndroid.showWithGravityAndOffset(
+          'NO DATA AVAILABLE',
+          ToastAndroid.SHORT,
+          ToastAndroid.CENTER,
+          25,
+          50,
+        )
+      }
+
     }).catch(err => {
       ToastAndroid.showWithGravityAndOffset(
         'Error occurred in the server',
@@ -148,16 +159,6 @@ const ReportType = () => {
 
 
   console.log("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<", tableData)
-
-  if (tableData.length === 0) {
-    ToastAndroid.showWithGravityAndOffset(
-      'NO DATA AVAILABLE',
-      ToastAndroid.SHORT,
-      ToastAndroid.CENTER,
-      25,
-      50,
-    )
-  }
 
   console.log("###################", accountType)
   return (

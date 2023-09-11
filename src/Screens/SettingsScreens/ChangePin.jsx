@@ -60,7 +60,7 @@ const ChangePin = () => {
               <Text style={{ color: colors.tertiary }}>Confirm Pin</Text>
               <MpinComponent value={confirmNewPasscode} handleChange={setConfirmNewPasscode} />
             </View>
-            <ButtonComponent title={"CHANGE NOW"} customStyle={{ margin: 10, }} handleOnpress={handleChangePassword} />
+            <ButtonComponent title={"CHANGE NOW"} customStyle={{ margin: 10, marginTop: 20}} handleOnpress={handleChangePassword} />
           </View>
 
         </View>

@@ -3,7 +3,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import IconIcons from 'react-native-vector-icons/Ionicons';
 import AntDesign from 'react-native-vector-icons/AntDesign'
-import {colors} from './colors';
+import { colors } from './colors';
 const HomeFill = (color, size) => (
   <Entypo name="home" size={size} color={color} />
 );
@@ -29,11 +29,11 @@ const profile = (color = colors.black, size = 25) => (
   <AntDesign name={'profile'} color={color} size={size} />
 );
 
-const password = (color = colors.black, size = 25)=>(
+const password = (color = colors.black, size = 25) => (
   <MaterialIcons name="password" color={color} size={size} />
 )
 
-const report = (color = colors.black, size = 25)=>(
+const report = (color = colors.black, size = 25) => (
   <MaterialIcons name="report" color={color} size={size} />
 )
 
@@ -44,5 +44,5 @@ export const icon = {
   logout,
   settings,
   end,
-  profile,password,report
+  profile, password, report
 };
