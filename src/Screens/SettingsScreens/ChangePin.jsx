@@ -1,16 +1,23 @@
 import { StyleSheet, Text, ToastAndroid, View } from 'react-native'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import MpinComponent from '../../Components/MpinComponent'
 import ButtonComponent from '../../Components/ButtonComponent'
 import CustomHeader from '../../Components/CustomHeader'
 import { colors } from '../../Resources/colors'
+import { AppStore } from '../../Context/AppContext'
+import axios from 'axios'
+import { REACT_APP_BASE_URL } from '../../Config/config'
 
 const ChangePin = () => {
+
+  const { userId, deviceId, bankId, branchCode, logout } = useContext(AppStore)
+
   const [passCode, changePasscode] = useState(() => '')
   const [newPassCode, setNewPassCode] = useState(() => '')
   const [confirmNewPasscode, setConfirmNewPasscode] = useState(() => '')
 
-  const handleChangePassword = () => {
+
+  const handleChangePassword = async () => {
     if (newPassCode !== confirmNewPasscode) {
       ToastAndroid.showWithGravityAndOffset(
         'Confirm Password must be same as New Passowrd.',
@@ -19,6 +26,9 @@ const ChangePin = () => {
         25,
         50,
       )
+      changePasscode("")
+      setNewPassCode("")
+      setConfirmNewPasscode("")
     } else if (passCode == "" || newPassCode == "" || confirmNewPasscode == "" || passCode.length !== 4 || newPassCode.length !== 4 || confirmNewPasscode.length !== 4) {
       ToastAndroid.showWithGravityAndOffset(
         'Fill Pin Numbers properly.',
@@ -27,14 +37,40 @@ const ChangePin = () => {
         25,
         50,
       )
+      changePasscode("")
+      setNewPassCode("")
+      setConfirmNewPasscode("")
     } else {
-      ToastAndroid.showWithGravityAndOffset(
-        'Pin number changed successfully.',
-        ToastAndroid.SHORT,
-        ToastAndroid.CENTER,
-        25,
-        50,
-      )
+      const obj = { device_id: deviceId, user_id: userId, password: newPassCode, confirm_password: confirmNewPasscode, old_password: passCode, bank_id: bankId, branch_code: branchCode }
+
+      await axios.post(`${REACT_APP_BASE_URL}/user/change_pin`, obj, {
+        headers: {
+          Accept: 'application/json'
+        }
+      }).then(res => {
+        ToastAndroid.showWithGravityAndOffset(
+          res.data.success,
+          ToastAndroid.SHORT,
+          ToastAndroid.CENTER,
+          25,
+          50,
+        )
+        changePasscode("")
+        setNewPassCode("")
+        setConfirmNewPasscode("")
+        logout()
+      }).catch(err => {
+        ToastAndroid.showWithGravityAndOffset(
+          err.response.data,
+          ToastAndroid.SHORT,
+          ToastAndroid.CENTER,
+          25,
+          50,
+        )
+        changePasscode("")
+        setNewPassCode("")
+        setConfirmNewPasscode("")
+      })
     }
   }
 
