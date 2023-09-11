@@ -13,7 +13,15 @@ const ChangePin = () => {
   const handleChangePassword = () => {
     if (newPassCode !== confirmNewPasscode) {
       ToastAndroid.showWithGravityAndOffset(
-        'Confirm Password must be as New Passowrd.',
+        'Confirm Password must be same as New Passowrd.',
+        ToastAndroid.SHORT,
+        ToastAndroid.CENTER,
+        25,
+        50,
+      )
+    } else if (passCode == "" || newPassCode == "" || confirmNewPasscode == "" || passCode.length !== 4 || newPassCode.length !== 4 || confirmNewPasscode.length !== 4) {
+      ToastAndroid.showWithGravityAndOffset(
+        'Fill Pin Numbers properly.',
         ToastAndroid.SHORT,
         ToastAndroid.CENTER,
         25,
@@ -21,7 +29,7 @@ const ChangePin = () => {
       )
     } else {
       ToastAndroid.showWithGravityAndOffset(
-        'Password Changed Successfully.',
+        'Pin number changed successfully.',
         ToastAndroid.SHORT,
         ToastAndroid.CENTER,
         25,
@@ -46,7 +54,7 @@ const ChangePin = () => {
 
           <View>
             <View style={styles.headerText}>
-            <Text style={styles.title}>CHANGE YOUR M-PIN</Text>
+              <Text style={styles.title}>CHANGE YOUR M-PIN</Text>
             </View>
             <View style={styles.pinContainer}>
               <Text style={{ color: colors.tertiary }}>Old Pin</Text>
@@ -60,7 +68,7 @@ const ChangePin = () => {
               <Text style={{ color: colors.tertiary }}>Confirm Pin</Text>
               <MpinComponent value={confirmNewPasscode} handleChange={setConfirmNewPasscode} />
             </View>
-            <ButtonComponent title={"CHANGE NOW"} customStyle={{ margin: 10, marginTop: 20}} handleOnpress={handleChangePassword} />
+            <ButtonComponent title={"CHANGE NOW"} customStyle={{ margin: 10, marginTop: 20 }} handleOnpress={handleChangePassword} />
           </View>
 
         </View>
