@@ -60,8 +60,9 @@ const ChangePin = () => {
         setConfirmNewPasscode("")
         logout()
       }).catch(err => {
+        console.log("CHANGE PINNN SCREENNNN", err.response.data.error)
         ToastAndroid.showWithGravityAndOffset(
-          err.response.data,
+          err.response.data.error,
           ToastAndroid.SHORT,
           ToastAndroid.CENTER,
           25,
