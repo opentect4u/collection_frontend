@@ -9,7 +9,8 @@ import {
 import { colors } from '../../Resources/colors'
 import CustomHeader from '../../Components/CustomHeader'
 import { AppStore } from '../../Context/AppContext'
-const Home = () => {
+// import { useIsFocused } from '@react-navigation/native';
+const Home = ({ navigation }) => {
 
   const { userId, agentName, bankName, branchName, totalCollection, getTotalDepositAmount, login } = useContext(AppStore)
 
@@ -51,6 +52,22 @@ const Home = () => {
   //     login()
   //   }, 2000)
   // }, [])
+
+  // const isFocused = useIsFocused()
+  // useEffect(() => {
+  //   if (isFocused) {
+  //     // getTotalDe123positAmount()
+  //     onRefresh()
+  //   }
+  // }, [navigation.isFocused()])
+
+  // useEffect(() => {
+  //   const focusEvent = navigation.addListener('focus', () => {
+  //     onRefresh()
+  //   })
+  //   // Return the function to unsubscribe from the event so it gets removed on unmount
+  //   return () => focusEvent
+  // }, [navigation])
 
 
   return (

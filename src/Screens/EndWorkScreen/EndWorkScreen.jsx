@@ -41,6 +41,7 @@ const EndWorkScreen = () => {
       }
     }).then(res => {
       // console.log("###### Preview: ", res.data)
+      alert("Your work has been submitted.")
       ToastAndroid.showWithGravityAndOffset(
         "Your work has been submitted.",
         ToastAndroid.SHORT,
@@ -48,6 +49,7 @@ const EndWorkScreen = () => {
         25,
         50,
       )
+      setIsButtonEnabled(!isButtonEnabled)
     }).catch(err => {
       console.log("############", err.response.data)
       ToastAndroid.showWithGravityAndOffset(
@@ -98,7 +100,7 @@ const EndWorkScreen = () => {
             justifyContent: 'center',
             alignContent: "center"
           }}>
-          <ScrollView>
+          <ScrollView keyboardShouldPersistTaps="handled">
             <Text style={styles.todayCollection}>Today's Collections</Text>
             <Table
               borderStyle={{ borderWidth: 1, borderColor: colors.primary }}

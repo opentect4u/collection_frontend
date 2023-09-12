@@ -23,12 +23,14 @@ import axios from 'axios'
 import { AppStore } from '../../Context/AppContext'
 import { REACT_APP_BASE_URL } from "../../Config/config"
 import mainNavigationRoutes from '../../Routes/NavigationRoutes'
+import { StackActions } from '@react-navigation/native'
 
 const AccountPreview = ({ navigation, route }) => {
 
   const [receiptNumber, setReceiptNumber] = useState(() => "")
+  const [isSaveEnabled, setIsSaveEnabled] = useState(() => false)
 
-  const { userId, maximumAmount, getTotalDepositAmount, totalDepositedAmount } = useContext(AppStore)
+  const { id, userId, maximumAmount, getTotalDepositAmount, totalDepositedAmount } = useContext(AppStore)
   const { item, money } = route.params
 
   // const [addedMoney, setAddedMoney] = useState(() => 0)
@@ -41,10 +43,12 @@ const AccountPreview = ({ navigation, route }) => {
     ['Previous Balance', item?.current_balance],
     ['Deposited Ammount', money],
     ['Total Balance', item?.current_balance + parseFloat(money)],
-  ];
+  ]
+
+  const resetAction = StackActions.popToTop()
 
   const sendCollectedMoney = async () => {
-    const obj = { bank_id: item?.bank_id, branch_code: item?.branch_code, agent_code: userId, account_holder_name: item?.customer_name, transaction_date: new Date().toISOString(), account_type: item?.acc_type, product_code: item?.product_code, account_number: item?.account_number, deposit_amount: parseFloat(money), collection_by: userId }
+    const obj = { bank_id: item?.bank_id, branch_code: item?.branch_code, agent_code: userId, account_holder_name: item?.customer_name, transaction_date: new Date().toISOString(), account_type: item?.acc_type, product_code: item?.product_code, account_number: item?.account_number, deposit_amount: parseFloat(money), collection_by: id }
     console.log("===========", obj)
     await axios.post(`${REACT_APP_BASE_URL}/user/transaction`, obj, {
       headers: {
@@ -54,19 +58,32 @@ const AccountPreview = ({ navigation, route }) => {
       console.log("###### Preview: ", res.data)
       alert(`Receipt No is ${res.data.receipt_no}`)
       setReceiptNumber(res.data.receipt_no)
-      navigation.navigate(mainNavigationRoutes.home)
+      setIsSaveEnabled(false)
+      navigation.dispatch(resetAction)
     }).catch(err => {
       console.log(err.response.data)
+      ToastAndroid.showWithGravityAndOffset(
+        'You ended your work or error in the server.',
+        ToastAndroid.SHORT,
+        ToastAndroid.CENTER,
+        25,
+        50,
+      )
     })
   }
 
   const handleSave = () => {
     getTotalDepositAmount()
-    if (!(maximumAmount < (money + totalDepositedAmount))) {
+    console.log("##$$$$###$$$", maximumAmount, money, totalDepositedAmount)
+    console.log("##$$$$+++++###$$$", (money + totalDepositedAmount))
+    console.log("##$$$$+++++###$$$", typeof(money), typeof(totalDepositedAmount))
+    console.log("##$$$$+++++###$$$", (parseFloat(money) + totalDepositedAmount))
+    if (!(maximumAmount < (parseFloat(money) + totalDepositedAmount))) {
+    setIsSaveEnabled(true)
       sendCollectedMoney()
     } else {
       ToastAndroid.showWithGravityAndOffset(
-        'You cannot collect money at this time.',
+        'Your collection quota has been exceeded.',
         ToastAndroid.SHORT,
         ToastAndroid.CENTER,
         25,
@@ -124,6 +141,7 @@ const AccountPreview = ({ navigation, route }) => {
               handleOnpress={() => {
                 handleSave()
               }}
+              disabled={isSaveEnabled}
             />
           </View>
         </ScrollView>

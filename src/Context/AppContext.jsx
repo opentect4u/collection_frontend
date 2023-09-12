@@ -8,6 +8,7 @@ export const AppStore = createContext()
 
 const AppContext = ({ children }) => {
     const [isLogin, setIsLogin] = useState(() => false)
+    const [id, setId] = useState(() => 0)
     const [userId, setUserId] = useState(() => '')
     const [agentName, setAgentName] = useState(() => "")
     const [agentEmail, setAgentEmail] = useState(() => "")
@@ -56,6 +57,7 @@ const AppContext = ({ children }) => {
             setIsLogin(true)
             console.log("response from server")
             console.log(res.data, res.status)
+            setId(res.data.success.user_data.msg[0].id)
             setAgentName(res.data.success.user_data.msg[0].agent_name)
             setAgentEmail(res.data.success.user_data.msg[0].email_id)
             setAgentPhoneNumber(res.data.success.user_data.msg[0].phone_no)
@@ -174,7 +176,7 @@ const AppContext = ({ children }) => {
     }
 
     return (
-        <AppStore.Provider value={{ isLogin, setIsLogin, logout, userId, agentName, agentEmail, agentPhoneNumber, login, getUserId, deviceId, setDeviceID, passcode, setPasscode, next, setNext, bankId, bankName, branchName, branchCode, maximumAmount, totalCollection, receiptNumber, holidayLock, modifiedAt, todayDateFromServer, getFlagsRequest, collectionFlag, endFlag, getTotalDepositAmount, totalDepositedAmount }}>
+        <AppStore.Provider value={{ isLogin, setIsLogin, logout, id, userId, agentName, agentEmail, agentPhoneNumber, login, getUserId, deviceId, setDeviceID, passcode, setPasscode, next, setNext, bankId, bankName, branchName, branchCode, maximumAmount, totalCollection, receiptNumber, holidayLock, modifiedAt, todayDateFromServer, getFlagsRequest, collectionFlag, endFlag, getTotalDepositAmount, totalDepositedAmount }}>
             {children}
         </AppStore.Provider>
     )
