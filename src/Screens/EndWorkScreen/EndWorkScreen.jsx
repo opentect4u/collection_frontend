@@ -25,7 +25,7 @@ const EndWorkScreen = () => {
     ['Agent Code', userId],
     ['Agent Name', agentName],
     ['Branch Code', branchCode],
-    ['Max Collection', receiptNumber],
+    ['Max Collection', maximumAmount],
     ['Today Collection', totalCollection],
     ['Remaing Collection', maximumAmount - totalCollection],
   ]
