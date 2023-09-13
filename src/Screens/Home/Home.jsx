@@ -69,6 +69,25 @@ const Home = ({ navigation }) => {
   //   return () => focusEvent
   // }, [navigation])
 
+  useFocusEffect(
+
+    useCallback(() => {
+
+      // alert('Screen was focused')
+      setRefreshing(true)
+      getTotalDepositAmount()
+      setTimeout(() => {
+        setRefreshing(false)
+        login()
+      }, 2000)
+
+      return () => {
+        // alert('Screen was unfocused')
+        // // Useful for cleanup functions
+      }
+    }, [])
+  )
+
 
   return (
     <>

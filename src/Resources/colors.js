@@ -13,8 +13,10 @@ export const colors = {
 
     secondaryBackground: "#e9eaf2",
     primaryBackground: "#fefffe",
-    primary: "#dd7c37",
-    secondary: "#159b43",
+    // primary: "#dd7c37",
+    primary: "#483285",
+    // secondary: "#159b43",
+    secondary: "teal",
     tertiary: "#374fed",
     danger: "#fc1726",
 }

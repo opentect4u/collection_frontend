@@ -5,6 +5,7 @@ import { icon } from '../Resources/Icons'
 import { useNavigation } from '@react-navigation/native'
 import mainNavigationRoutes from '../Routes/NavigationRoutes'
 import { AppStore } from '../Context/AppContext'
+import HeaderIcon from "../Resources/Images/logo_cut.png"
 
 const CustomHeader = () => {
   const [isImageLoad, setIsImageLoad] = useState(true);
@@ -17,9 +18,7 @@ const CustomHeader = () => {
       <Text> </Text>
       {isImageLoad && (
         <Image
-          source={{
-            uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Logo_of_Twitter.svg/512px-Logo_of_Twitter.svg.png?20220821125553',
-          }}
+          source={HeaderIcon}
           style={styles.image}
           resizeMode="contain"
           onError={err => setIsImageLoad(false)}
@@ -43,7 +42,7 @@ export default CustomHeader
 const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.white,
-    height: 60,
+    height: 50,
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingHorizontal: 10,
