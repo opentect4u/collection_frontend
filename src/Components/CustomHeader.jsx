@@ -24,14 +24,14 @@ const CustomHeader = () => {
           onError={err => setIsImageLoad(false)}
         />
       )}
-      {!isImageLoad && <Text style={{ color: colors.black }}>Bank Name</Text>}
+      {!isImageLoad && <Text style={{ color: colors.black }}>Data Bank</Text>}
       <Pressable
         onPress={() => {
           logout()
           console.log(isLogin)
           navigation.navigate(mainNavigationRoutes.login)
         }}>
-        {icon.logout(colors.light_sea_green)}
+        {icon.logout(colors.secondary)}
       </Pressable>
     </View>
   );
@@ -56,5 +56,6 @@ const styles = StyleSheet.create({
   image: {
     height: 50,
     width: 50,
+    marginLeft: 30
   },
 })

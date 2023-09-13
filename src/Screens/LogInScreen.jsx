@@ -15,9 +15,10 @@ import ButtonComponent from '../Components/ButtonComponent'
 import mainNavigationRoutes from '../Routes/NavigationRoutes'
 import { AppStore } from '../Context/AppContext'
 import SmoothPinCodeInput from 'react-native-smooth-pincode-input'
+import HeaderImage from "../Resources/Images/logo_cut.png"
 
 const LogInScreen = ({ navigation }) => {
-  const { isLogin, login, userId, getUserId, deviceId, setDeviceId, passcode, setPasscode, next, setNext } = useContext(AppStore)
+  const { isLogin, login, userId, agentName, getUserId, deviceId, setDeviceId, passcode, setPasscode, next, setNext } = useContext(AppStore)
 
   useEffect(() => {
     console.log(passcode)
@@ -46,9 +47,7 @@ const LogInScreen = ({ navigation }) => {
     <View style={{ flex: 1, backgroundColor: colors.whiteT }}>
       <View style={styles.logoContainer}>
         <Image
-          source={{
-            uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Logo_of_Twitter.svg/512px-Logo_of_Twitter.svg.png?20220821125553',
-          }}
+          source={HeaderImage}
           style={styles.image}
           resizeMode="contain"
         />
@@ -84,6 +83,13 @@ const LogInScreen = ({ navigation }) => {
                 label={'Agent ID'}
                 readOnly={true}
               />
+              {/* <InputComponent
+                // handleChange={handlePressOnFirstScreen}
+                value={agentName ? agentName : "Fetching Username..."}
+                placeholder={`${agentName}`}
+                label={'Agent Name'}
+                readOnly={true}
+              /> */}
 
               <View style={styles.buttonContainer}>
                 <ButtonComponent
@@ -243,7 +249,7 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
   image: {
-    width: 50,
+    width: 80,
     height: 50,
   },
 });

@@ -21,7 +21,7 @@ const SettingScreen = ({navigation}) => {
           }
           style={styles.cardContainer}>
           {/* Icon */}
-          {icon.profile(colors.light_sea_green, 45)}
+          {icon.profile(colors.secondary, 45)}
 
           {/* label */}
           <Text style={styles.label}> Profile </Text>
@@ -33,7 +33,7 @@ const SettingScreen = ({navigation}) => {
           }
           style={styles.cardContainer}>
           {/* Icon */}
-          {icon.password(colors.light_sea_green, 45)}
+          {icon.password(colors.secondary, 45)}
 
           {/* label */}
           <Text style={styles.label}> Change Pin </Text>
@@ -43,7 +43,7 @@ const SettingScreen = ({navigation}) => {
           onPress={() => navigation.navigate(mainNavigationRoutes.reportChooseScreen)}
           style={styles.cardContainer}>
           {/* Icon */}
-          {icon.report(colors.light_sea_green, 45)}
+          {icon.report(colors.secondary, 45)}
 
           {/* label */}
           <Text style={styles.label}> Reports </Text>

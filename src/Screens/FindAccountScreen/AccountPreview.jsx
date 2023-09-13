@@ -48,7 +48,7 @@ const AccountPreview = ({ navigation, route }) => {
   const resetAction = StackActions.popToTop()
 
   const sendCollectedMoney = async () => {
-    const obj = { bank_id: item?.bank_id, branch_code: item?.branch_code, agent_code: userId, account_holder_name: item?.customer_name, transaction_date: new Date().toISOString(), account_type: item?.acc_type, product_code: item?.product_code, account_number: item?.account_number, deposit_amount: parseFloat(money), collection_by: id }
+    const obj = { bank_id: item?.bank_id, branch_code: item?.branch_code, agent_code: userId, account_holder_name: item?.customer_name, transaction_date: new Date().toISOString(), account_type: item?.acc_type, product_code: item?.product_code, account_number: item?.account_number, total_amount: (item?.current_balance + parseFloat(money)), deposit_amount: parseFloat(money), collection_by: id }
     console.log("===========", obj)
     await axios.post(`${REACT_APP_BASE_URL}/user/transaction`, obj, {
       headers: {
@@ -76,10 +76,10 @@ const AccountPreview = ({ navigation, route }) => {
     getTotalDepositAmount()
     console.log("##$$$$###$$$", maximumAmount, money, totalDepositedAmount)
     console.log("##$$$$+++++###$$$", (money + totalDepositedAmount))
-    console.log("##$$$$+++++###$$$", typeof(money), typeof(totalDepositedAmount))
+    console.log("##$$$$+++++###$$$", typeof (money), typeof (totalDepositedAmount))
     console.log("##$$$$+++++###$$$", (parseFloat(money) + totalDepositedAmount))
     if (!(maximumAmount < (parseFloat(money) + totalDepositedAmount))) {
-    setIsSaveEnabled(true)
+      setIsSaveEnabled(true)
       sendCollectedMoney()
     } else {
       ToastAndroid.showWithGravityAndOffset(
