@@ -3,7 +3,7 @@ import { PixelRatio, ScrollView, StyleSheet, Text, TouchableOpacity, View, Toast
 // import DateTimePickerModal from "react-native-modal-datetime-picker"
 import { AppStore } from '../../Context/AppContext'
 import CustomHeader from '../../Components/CustomHeader'
-import { colors } from '../../Resources/colors'
+import { COLORS, colors } from '../../Resources/colors'
 import {
   Table,
   Rows,
@@ -167,7 +167,7 @@ const ReportType = () => {
       <View style={{
         flex: 4,
         padding: 10,
-        backgroundColor: colors.whiteT,
+        backgroundColor: COLORS.lightScheme.background,
         margin: 20,
         borderRadius: 10,
       }}>
@@ -213,8 +213,8 @@ const ReportType = () => {
         </View>
         <View>
           <View style={{justifyContent: "space-around", flexDirection: "row", backgroundColor: "coral", padding: 10, margin: 10, borderRadius: 10}}>
-            <Text style={{ fontSize: 15, fontWeight: 500, color: colors.whiteT, fontWeight: "bold" }}>From: {startDate}</Text>
-            <Text style={{ fontSize: 15, fontWeight: 500, color: colors.whiteT, fontWeight: "bold" }}>To: {endDate}</Text>
+            <Text style={{ fontSize: 15, fontWeight: 500, color: COLORS.lightScheme.onPrimary, fontWeight: "bold" }}>From: {startDate}</Text>
+            <Text style={{ fontSize: 15, fontWeight: 500, color: COLORS.lightScheme.onPrimary, fontWeight: "bold" }}>To: {endDate}</Text>
           </View>
           {/* <DropdownComponent
             data={data}
@@ -267,8 +267,8 @@ const ReportType = () => {
         </View>
         <ScrollView>
           {tableData && <Table
-            borderStyle={{ borderWidth: 2, borderColor: colors.primary, borderRadius: 10 }}
-            style={{ backgroundColor: colors.white }}>
+            borderStyle={{ borderWidth: 2, borderColor: COLORS.lightScheme.onTertiaryContainer, borderRadius: 10 }}
+            style={{ backgroundColor: COLORS.lightScheme.onPrimary }}>
             <Row data={tableHead} textStyle={styles.head} />
             <Rows data={tableData} textStyle={styles.text} />
           </Table>}
@@ -293,7 +293,7 @@ const styles = StyleSheet.create({
     width: "40%",
     height: 40,
     borderWidth: 2,
-    borderColor: colors.grey,
+    borderColor: COLORS.lightScheme.onSurfaceVarient,
     backgroundColor: "dodgerblue",
     margin: 15,
     borderRadius: 10,
@@ -303,19 +303,19 @@ const styles = StyleSheet.create({
   },
   text: {
     margin: 6,
-    color: colors.black,
+    color: COLORS.lightScheme.onBackground,
     fontWeight: '400',
     fontSize: 10,
   },
   head: {
     margin: 6,
-    color: colors.black,
+    color: COLORS.lightScheme.onBackground,
     fontWeight: '900',
     fontSize: 10,
   },
   todayCollection: {
-    backgroundColor: colors.secondary,
-    color: colors.whiteT,
+    backgroundColor: COLORS.lightScheme.primary,
+    color: COLORS.lightScheme.onPrimary,
     fontWeight: '600',
     textAlign: 'center',
     fontSize: PixelRatio.roundToNearestPixel(22),

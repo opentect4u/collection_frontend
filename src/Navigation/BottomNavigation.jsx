@@ -5,7 +5,7 @@ import Home from '../Screens/Home/Home'
 import mainNavigationRoutes from '../Routes/NavigationRoutes'
 import HomeTwo from '../Screens/Home/HomeTwo'
 import { icon } from '../Resources/Icons'
-import { colors } from '../Resources/colors'
+import { COLORS, colors } from '../Resources/colors'
 import FindAccountScreen from '../Screens/FindAccountScreen/FindAccountScreen'
 import NotificationScreen from '../Screens/Notification/NotificationScreen'
 import AccountFindNavigation from './AccountFindNavigation'
@@ -21,12 +21,12 @@ const BottomNavigation = () => {
       <Tab.Navigator
         screenOptions={{
           tabBarStyle: {
-            backgroundColor: colors.white,
+            backgroundColor: COLORS.lightScheme.onPrimary,
             borderTopLeftRadius: 20,
             borderTopRightRadius: 20,
           },
-          tabBarActiveTintColor: colors.primary,
-          tabBarInactiveTintColor: colors.grey,
+          tabBarActiveTintColor: COLORS.lightScheme.primary,
+          tabBarInactiveTintColor: COLORS.lightScheme.onSurface,
           tabBarShowLabel: false,
           tabBarHideOnKeyboard: true,
         }}>

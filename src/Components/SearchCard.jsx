@@ -1,6 +1,6 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
-import { colors } from '../Resources/colors'
+import { COLORS, colors } from '../Resources/colors'
 import mainNavigationRoutes from '../Routes/NavigationRoutes'
 
 const SearchCard = ({ item, index, navigation }) => {
@@ -36,7 +36,7 @@ export default SearchCard
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    backgroundColor: colors.secondary,
+    backgroundColor: COLORS.lightScheme.tertiary,
     padding: 10,
     borderRadius: 5,
     flexDirection: 'row',
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     marginVertical: 10
   },
   text: {
-    color: colors.whiteT,
+    color: COLORS.lightScheme.onTertiary,
     padding: 2,
     fontWeight: '500',
     fontSize: 14

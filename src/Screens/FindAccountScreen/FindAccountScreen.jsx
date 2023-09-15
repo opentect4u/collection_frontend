@@ -1,7 +1,7 @@
 import { AppState, ScrollView, StyleSheet, Text, View } from 'react-native'
 import { useContext, useEffect, useState } from 'react'
 import CustomHeader from '../../Components/CustomHeader'
-import { colors } from '../../Resources/colors'
+import { COLORS, colors } from '../../Resources/colors'
 import InputComponent from '../../Components/InputComponent'
 import SearchCard from '../../Components/SearchCard'
 import axios from 'axios'
@@ -77,7 +77,7 @@ export default FindAccountScreen;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.secondaryBackground,
+    backgroundColor: COLORS.lightScheme.backgroundk,
     height: '100%',
     padding: 10,
   },
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
     bottom: 130,
     width: '100%',
     alignSelf: 'center',
-    backgroundColor: colors.whiteT,
+    backgroundColor: COLORS.lightScheme.tertiaryContainer,
     padding: 10,
     borderRadius: 10,
   },

@@ -8,7 +8,7 @@ import {
   ToastAndroid,
 } from 'react-native'
 import { useContext, useEffect, useState } from "react"
-import { colors } from '../../Resources/colors'
+import { COLORS, colors } from '../../Resources/colors'
 import CustomHeader from '../../Components/CustomHeader'
 import {
   Table,
@@ -108,7 +108,7 @@ const AccountPreview = ({ navigation, route }) => {
       <CustomHeader />
       <View
         style={{
-          backgroundColor: colors.secondaryBackground,
+          backgroundColor: COLORS.lightScheme.background,
           height: '100%',
           padding: 10,
         }}>
@@ -117,8 +117,8 @@ const AccountPreview = ({ navigation, route }) => {
           {/* Table Component */}
           <View style={styles.tableConatiner}>
             <Table
-              borderStyle={{ borderWidth: 2, borderColor: colors.primary }}
-              style={{ backgroundColor: colors.white }}>
+              borderStyle={{ borderWidth: 2, borderColor: COLORS.lightScheme.onTertiaryContainer }}
+              style={{ backgroundColor: COLORS.lightScheme.onTertiary }}>
               <Rows data={tableData} textStyle={styles.text} />
             </Table>
           </View>
@@ -128,7 +128,7 @@ const AccountPreview = ({ navigation, route }) => {
               title={'Back'}
               customStyle={{
                 marginTop: 10,
-                backgroundColor: colors.primary,
+                backgroundColor: COLORS.lightScheme.error,
                 width: '40%',
               }}
               handleOnpress={() => {
@@ -155,16 +155,16 @@ export default AccountPreview;
 const styles = StyleSheet.create({
   text: {
     margin: 6,
-    color: colors.black,
+    color: COLORS.lightScheme.onBackground,
     fontWeight: '400',
     fontSize: 18,
   },
   info: {
-    color: colors.secondary,
+    color: COLORS.lightScheme.primary,
     textAlign: 'center',
     fontSize: 22,
     letterSpacing: 5,
-    backgroundColor: colors.white,
+    backgroundColor: COLORS.darkScheme.onSecondaryContainer,
     borderRadius: 5,
     marginBottom: 5,
     paddingVertical: 5,
@@ -174,14 +174,14 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     padding: 10,
     paddingTop: -5,
-    backgroundColor: colors.whiteT,
+    backgroundColor: COLORS.lightScheme.onPrimary,
     borderRadius: 5,
     flexDirection: 'row',
     justifyContent: 'space-around',
   },
   tableConatiner: {
     padding: 10,
-    backgroundColor: colors.whiteT,
+    backgroundColor: COLORS.lightScheme.onTertiary,
     borderRadius: 5,
   },
 });

@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, ScrollView, ToastAndroid } from 'react-native'
 import { useContext, useState } from 'react'
 import CustomHeader from '../../Components/CustomHeader'
-import { colors } from '../../Resources/colors'
+import { COLORS, colors } from '../../Resources/colors'
 import {
   Table,
   TableWrapper,
@@ -78,23 +78,27 @@ const EndWorkScreen = () => {
   }
 
 
+  // {
+  //   <View style={styles.logoContainer}>
+  //       <View style={{ width: '100%' }}>
+  //         {/* Wellcome gretting */}
+  //         <Text style={styles.grettingText}>Welcome To {'Data Bank'}</Text>
+  //         {/* manual text */}
+  //         <Text style={styles.manual}>Hello,{agentName}</Text>
+  //       </View>
+  //     </View>
+  // } after CustomerHeader
+
 
   return (
     <View style={{ flex: 1 }}>
       <CustomHeader />
-      <View style={styles.logoContainer}>
-        <View style={{ width: '100%' }}>
-          {/* Wellcome gretting */}
-          <Text style={styles.grettingText}>Welcome To {'Data Bank'}</Text>
-          {/* manual text */}
-          <Text style={styles.manual}>Hello,{agentName}</Text>
-        </View>
-      </View>
+      
       <View >
         <View
           style={{
             padding: 10,
-            backgroundColor: colors.whiteT,
+            backgroundColor: COLORS.lightScheme.onPrimary,
             margin: 20,
             borderRadius: 10,
             justifyContent: 'center',
@@ -103,8 +107,8 @@ const EndWorkScreen = () => {
           <ScrollView keyboardShouldPersistTaps="handled">
             <Text style={styles.todayCollection}>Today's Collections</Text>
             <Table
-              borderStyle={{ borderWidth: 1, borderColor: colors.primary }}
-              style={{ backgroundColor: colors.white }}>
+              borderStyle={{ borderWidth: 1, borderColor: COLORS.lightScheme.tertiary }}
+              style={{ backgroundColor: COLORS.lightScheme.onPrimary }}>
               <Rows data={tableData} textStyle={styles.text} />
             </Table>
             <MpinComponent value={endScreenPassword} handleChange={setEndScreenPassword} />
@@ -120,33 +124,33 @@ const EndWorkScreen = () => {
 export default EndWorkScreen;
 
 const styles = StyleSheet.create({
-  logoContainer: {
-    flex: 2,
-    backgroundColor: colors.secondaryBackground,
-    borderBottomLeftRadius: 50,
-    borderBottomRightRadius: 50,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingHorizontal: 20,
-  },
-  grettingText: {
-    fontSize: 20,
-    color: colors.secondary,
-    letterSpacing: 1,
-    fontWeight: '900',
-    alignSelf: 'center',
-  },
-  manual: {
-    fontSize: 16,
-    color: colors.primary,
-    letterSpacing: 1,
-    fontWeight: '900',
-    alignSelf: 'center',
-  },
+  // logoContainer: {
+  //   flex: 2,
+  //   backgroundColor: COLORS.darkScheme.onSurface,
+  //   borderBottomLeftRadius: 50,
+  //   borderBottomRightRadius: 50,
+  //   flexDirection: 'row',
+  //   justifyContent: 'space-between',
+  //   alignItems: 'center',
+  //   paddingHorizontal: 20,
+  // },
+  // grettingText: {
+  //   fontSize: 20,
+  //   color: COLORS.lightScheme.primary,
+  //   letterSpacing: 1,
+  //   fontWeight: '900',
+  //   alignSelf: 'center',
+  // },
+  // manual: {
+  //   fontSize: 16,
+  //   color: COLORS.darkScheme.surface,
+  //   letterSpacing: 1,
+  //   fontWeight: '900',
+  //   alignSelf: 'center',
+  // },
   text: {
     margin: 6,
-    color: colors.black,
+    color: COLORS.lightScheme.onPrimaryContainer,
     fontWeight: '400',
     fontSize: 18,
     letterSpacing: 1

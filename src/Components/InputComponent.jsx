@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, TextInput, PixelRatio, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
-import { colors } from '../Resources/colors'
+import { COLORS, colors } from '../Resources/colors'
 import hide from '../Resources/Images/Icons/hide.png'
 
 const InputComponent = ({ handleChange, value, placeholder, label, readOnly = false, textHide = false, handlePasswordShow, keyboardType="default" }) => {
@@ -14,7 +14,7 @@ const InputComponent = ({ handleChange, value, placeholder, label, readOnly = fa
                 onChangeText={handleChange}
                 value={value}
                 placeholder={placeholder}
-                placeholderTextColor={colors.grey}
+                placeholderTextColor={COLORS.lightScheme.secondary}
                 readOnly={readOnly}
                 keyboardType={keyboardType}
                 secureTextEntry={textHide}
@@ -32,17 +32,17 @@ const styles = StyleSheet.create({
     input: {
         width: '100%',
         borderWidth: 1,
-        borderColor: colors.primary,
+        borderColor: COLORS.lightScheme.primary,
         borderRadius: PixelRatio.roundToNearestPixel(10),
         paddingHorizontal: 10,
-        color: colors.black
+        color: COLORS.lightScheme.onSurface
     },
     label: {
         marginTop:5,
         paddingHorizontal: PixelRatio.roundToNearestPixel(5),
         paddingBottom: PixelRatio.roundToNearestPixel(5),
         fontSize: PixelRatio.roundToNearestPixel(16),
-        color: colors.primary,
+        color: COLORS.lightScheme.primary,
         fontWeight: '600',
         letterSpacing:2
     },

@@ -1,13 +1,13 @@
 import { StyleSheet, View, Image } from 'react-native'
 import React from 'react'
-import { colors } from '../Resources/colors'
+import { COLORS, colors } from '../Resources/colors'
 
 
 const LogoComponent = () => {
     return (
         <>
             <View style={{
-                backgroundColor: colors.white,
+                backgroundColor: COLORS.lightScheme.onPrimary,
                 borderRadius: 50,
                 padding: 10
             }}>
@@ -32,11 +32,10 @@ const styles = StyleSheet.create({
         height: 80,
         width: 80,
     },
-    comapany_name:{
-        fontSize:22,
-        letterSpacing:2,
-        color:colors.white,
-        fontWeight:'600',
-        
+    comapany_name: {
+        fontSize: 22,
+        letterSpacing: 2,
+        color: COLORS.lightScheme.onPrimary,
+        fontWeight: '600',
     }
 })

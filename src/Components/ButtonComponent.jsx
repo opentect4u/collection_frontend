@@ -1,12 +1,12 @@
 import { StyleSheet, Text, View, TouchableOpacity, PixelRatio } from 'react-native'
 import React from 'react'
 // import LinearGradient from 'react-native-linear-gradient';
-import { colors } from '../Resources/colors';
+import { COLORS, colors } from '../Resources/colors';
 
 const ButtonComponent = ({ title, disabled = false, handleOnpress, customStyle }) => {
     return (
 
-        <TouchableOpacity disabled={disabled} onPress={handleOnpress} style={[{ ...styles.container, ...customStyle }, {backgroundColor: disabled ? colors.grey : colors.secondary}]} >
+        <TouchableOpacity disabled={disabled} onPress={handleOnpress} style={[{backgroundColor: disabled ? COLORS.darkScheme.secondary : COLORS.lightScheme.onPrimaryContainer}, { ...styles.container, ...customStyle }]} >
 
             <Text
                 style={styles.text}
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
         // backgroundColor: colors.secondary
     },
     text: {
-        color: colors.white,
+        color: COLORS.lightScheme.onError,
         fontSize: PixelRatio.roundToNearestPixel(18),
         fontWeight: '700',
         textAlign: "center",

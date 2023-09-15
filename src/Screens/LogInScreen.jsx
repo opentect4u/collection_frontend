@@ -8,7 +8,7 @@ import {
   ToastAndroid
 } from 'react-native';
 import { useState, useEffect, useContext } from 'react'
-import { colors } from '../Resources/colors'
+import { COLORS, colors } from '../Resources/colors'
 import InputComponent from '../Components/InputComponent'
 import { Strings } from '../Resources/Strings'
 import ButtonComponent from '../Components/ButtonComponent'
@@ -44,7 +44,7 @@ const LogInScreen = ({ navigation }) => {
   }, [])
 
   return (
-    <View style={{ flex: 1, backgroundColor: colors.whiteT }}>
+    <View style={{ flex: 1, backgroundColor: COLORS.lightScheme.background }}>
       <View style={styles.logoContainer}>
         <Image
           source={HeaderImage}
@@ -114,7 +114,7 @@ const LogInScreen = ({ navigation }) => {
                         width: 10,
                         height: 10,
                         borderRadius: 25,
-                        backgroundColor: colors.primary,
+                        backgroundColor: COLORS.lightScheme.primary,
                       }}></View>
                   }
                   maskDelay={1000}
@@ -122,7 +122,7 @@ const LogInScreen = ({ navigation }) => {
                   cellStyle={{
                     borderWidth: 1,
                     borderRadius: 5,
-                    borderColor: colors.secondary,
+                    borderColor: COLORS.lightScheme.secondary,
                   }}
                   cellStyleFocused={null}
                   value={passcode}
@@ -148,7 +148,7 @@ const LogInScreen = ({ navigation }) => {
                   }}
                   customStyle={{
                     marginTop: 10,
-                    backgroundColor: colors.danger,
+                    backgroundColor: COLORS.lightScheme.error,
                     width: '40%',
                   }}
                 />
@@ -174,7 +174,7 @@ export default LogInScreen;
 const styles = StyleSheet.create({
   logoContainer: {
     flex: 2,
-    backgroundColor: colors.secondaryBackground,
+    backgroundColor: COLORS.lightScheme.secondaryContainer,
     borderBottomLeftRadius: 50,
     borderBottomRightRadius: 50,
     flexDirection: 'row',
@@ -184,13 +184,13 @@ const styles = StyleSheet.create({
   },
   grettingText: {
     fontSize: 18,
-    color: colors.secondary,
+    color: COLORS.lightScheme.onSecondaryContainer,
     letterSpacing: 1,
     fontWeight: '900',
   },
   manual: {
     fontSize: 14,
-    color: colors.primary,
+    color: COLORS.lightScheme.primary,
     letterSpacing: 1,
     fontWeight: '900',
     alignSelf: 'center',
@@ -201,11 +201,11 @@ const styles = StyleSheet.create({
   },
   logINcontainer: {
     width: '100%',
-    backgroundColor: colors.whiteT,
+    backgroundColor: COLORS.lightScheme.background,
 
     padding: PixelRatio.roundToNearestPixel(10),
     borderRadius: PixelRatio.roundToNearestPixel(10),
-    shadowColor: colors.secondary,
+    shadowColor: COLORS.lightScheme.onTertiaryContainer,
     shadowOffset: {
       width: 0,
       height: 12,
@@ -221,10 +221,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 20,
     fontWeight: '900',
-    color: colors.white,
+    color: COLORS.lightScheme.tertiaryContainer,
     // alignSelf: 'center',
     letterSpacing: 4,
-    backgroundColor: colors.primary,
+    backgroundColor: COLORS.lightScheme.primary,
     paddingHorizontal: 15,
     paddingVertical: 5,
     borderTopLeftRadius: 100,
@@ -240,7 +240,7 @@ const styles = StyleSheet.create({
   },
   resetText: {
     textAlign: 'center',
-    color: colors.primary,
+    color: COLORS.lightScheme.onTertiaryContainer,
     fontSize: 16,
     alignSelf: 'flex-end',
     paddingHorizontal: 6,

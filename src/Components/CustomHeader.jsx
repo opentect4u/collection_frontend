@@ -1,6 +1,6 @@
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native'
 import React, { useContext, useState } from 'react'
-import { colors } from '../Resources/colors'
+import { COLORS, colors } from '../Resources/colors'
 import { icon } from '../Resources/Icons'
 import { useNavigation } from '@react-navigation/native'
 import mainNavigationRoutes from '../Routes/NavigationRoutes'
@@ -24,14 +24,14 @@ const CustomHeader = () => {
           onError={err => setIsImageLoad(false)}
         />
       )}
-      {!isImageLoad && <Text style={{ color: colors.black }}>Data Bank</Text>}
+      {!isImageLoad && <Text style={{ color: COLORS.lightScheme.onBackground }}>Data Bank</Text>}
       <Pressable
         onPress={() => {
           logout()
           console.log(isLogin)
           navigation.navigate(mainNavigationRoutes.login)
         }}>
-        {icon.logout(colors.secondary)}
+        {icon.logout(COLORS.lightScheme.secondary)}
       </Pressable>
     </View>
   );
@@ -41,7 +41,7 @@ export default CustomHeader
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.white,
+    backgroundColor: COLORS.lightScheme.surface,
     height: 50,
     flexDirection: 'row',
     justifyContent: 'space-between',

@@ -6,7 +6,7 @@ import {
     View,
   } from 'react-native';
   import {icon} from '../../Resources/Icons';
-  import {colors} from '../../Resources/colors';
+  import {COLORS, colors} from '../../Resources/colors';
   import CustomHeader from '../../Components/CustomHeader';
   import mainNavigationRoutes from '../../Routes/NavigationRoutes';
 
@@ -21,7 +21,7 @@ export default function ReportChoose({ navigation }) {
             }
             style={styles.cardContainer}>
             {/* Icon */}
-            {icon.profile(colors.light_sea_green, 45)}
+            {icon.profile(COLORS.lightScheme.primary, 45)}
   
             {/* label */}
             <Text style={styles.label}> Day Scroll Report </Text>
@@ -33,7 +33,7 @@ export default function ReportChoose({ navigation }) {
             }
             style={styles.cardContainer}>
             {/* Icon */}
-            {icon.password(colors.light_sea_green, 45)}
+            {icon.password(COLORS.lightScheme.primary, 45)}
   
             {/* label */}
             <Text style={styles.label}> A/c Type Wise Report </Text>
@@ -41,7 +41,7 @@ export default function ReportChoose({ navigation }) {
           <View
             style={{
               ...styles.cardContainer,
-              backgroundColor: colors.secondaryBackground,
+              backgroundColor: COLORS.lightScheme.background,
               elevation: 0,
             }}>
             {/* Blank Card */}
@@ -57,11 +57,11 @@ export default function ReportChoose({ navigation }) {
       flexWrap: 'wrap',
       padding: 10,
       justifyContent: 'space-evenly',
-      backgroundColor: colors.secondaryBackground,
+      backgroundColor: COLORS.lightScheme.background,
       height: '100%',
     },
     cardContainer: {
-      backgroundColor: colors.white,
+      backgroundColor: COLORS.lightScheme.onPrimary,
       alignItems: 'center',
       width: '45%',
       height: 150, //
@@ -72,7 +72,7 @@ export default function ReportChoose({ navigation }) {
       elevation: 10,
     },
     label: {
-      color: colors.primary,
+      color: COLORS.lightScheme.primary,
       padding: 10,
       textAlign: "center",
       fontSize: PixelRatio.roundToNearestPixel(18),

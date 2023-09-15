@@ -3,7 +3,7 @@ import { useContext, useState } from 'react'
 import MpinComponent from '../../Components/MpinComponent'
 import ButtonComponent from '../../Components/ButtonComponent'
 import CustomHeader from '../../Components/CustomHeader'
-import { colors } from '../../Resources/colors'
+import { COLORS, colors } from '../../Resources/colors'
 import { AppStore } from '../../Context/AppContext'
 import axios from 'axios'
 import { REACT_APP_BASE_URL } from '../../Config/config'
@@ -84,7 +84,7 @@ const ChangePin = () => {
           style={{
             flex: 4,
             padding: 10,
-            backgroundColor: colors.whiteT,
+            backgroundColor: COLORS.lightScheme.background,
             margin: 20,
             borderRadius: 10,
           }}>
@@ -94,15 +94,15 @@ const ChangePin = () => {
               <Text style={styles.title}>CHANGE YOUR M-PIN</Text>
             </View>
             <View style={styles.pinContainer}>
-              <Text style={{ color: colors.tertiary }}>Old Pin</Text>
+              <Text style={{ color: COLORS.lightScheme.onTertiaryContainer }}>Old Pin</Text>
               <MpinComponent value={passCode} handleChange={changePasscode} />
             </View>
             <View style={styles.pinContainer}>
-              <Text style={{ color: colors.tertiary }}>New Pin</Text>
+              <Text style={{ color: COLORS.lightScheme.onTertiaryContainer }}>New Pin</Text>
               <MpinComponent value={newPassCode} handleChange={setNewPassCode} />
             </View>
             <View style={styles.pinContainer}>
-              <Text style={{ color: colors.tertiary }}>Confirm Pin</Text>
+              <Text style={{ color: COLORS.lightScheme.onTertiaryContainer }}>Confirm Pin</Text>
               <MpinComponent value={confirmNewPasscode} handleChange={setConfirmNewPasscode} />
             </View>
             <ButtonComponent title={"CHANGE NOW"} customStyle={{ margin: 10, marginTop: 20 }} handleOnpress={handleChangePassword} />
@@ -120,7 +120,7 @@ export default ChangePin
 
 const styles = StyleSheet.create({
   headerText: {
-    backgroundColor: colors.secondaryBackground,
+    backgroundColor: COLORS.lightScheme.tertiaryContainer,
     borderBottomLeftRadius: 50,
     borderBottomRightRadius: 50,
     flexDirection: 'row',
@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
   },
   title: {
     textAlign: 'center',
-    color: "dodgerblue",
+    color: COLORS.lightScheme.onTertiaryContainer,
     fontSize: 20,
     fontWeight: '900',
     paddingHorizontal: 15,

@@ -6,7 +6,7 @@ import {
   View,
 } from 'react-native';
 import {icon} from '../../Resources/Icons';
-import {colors} from '../../Resources/colors';
+import {COLORS, colors} from '../../Resources/colors';
 import CustomHeader from '../../Components/CustomHeader';
 import mainNavigationRoutes from '../../Routes/NavigationRoutes';
 
@@ -21,7 +21,7 @@ const SettingScreen = ({navigation}) => {
           }
           style={styles.cardContainer}>
           {/* Icon */}
-          {icon.profile(colors.secondary, 45)}
+          {icon.profile(COLORS.lightScheme.primary, 45)}
 
           {/* label */}
           <Text style={styles.label}> Profile </Text>
@@ -33,7 +33,7 @@ const SettingScreen = ({navigation}) => {
           }
           style={styles.cardContainer}>
           {/* Icon */}
-          {icon.password(colors.secondary, 45)}
+          {icon.password(COLORS.lightScheme.primary, 45)}
 
           {/* label */}
           <Text style={styles.label}> Change Pin </Text>
@@ -43,7 +43,7 @@ const SettingScreen = ({navigation}) => {
           onPress={() => navigation.navigate(mainNavigationRoutes.reportChooseScreen)}
           style={styles.cardContainer}>
           {/* Icon */}
-          {icon.report(colors.secondary, 45)}
+          {icon.report(COLORS.lightScheme.primary, 45)}
 
           {/* label */}
           <Text style={styles.label}> Reports </Text>
@@ -51,7 +51,7 @@ const SettingScreen = ({navigation}) => {
         <View
           style={{
             ...styles.cardContainer,
-            backgroundColor: colors.secondaryBackground,
+            backgroundColor: COLORS.lightScheme.background,
             elevation: 0,
           }}>
           {/* Blank Card */}
@@ -69,11 +69,11 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     padding: 10,
     justifyContent: 'space-evenly',
-    backgroundColor: colors.secondaryBackground,
+    backgroundColor: COLORS.lightScheme.background,
     height: '100%',
   },
   cardContainer: {
-    backgroundColor: colors.white,
+    backgroundColor: COLORS.lightScheme.onPrimary,
     alignItems: 'center',
     width: '45%',
     height: 150, //
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     elevation: 10,
   },
   label: {
-    color: colors.primary,
+    color: COLORS.lightScheme.onSurface,
     padding: 10,
     fontSize: PixelRatio.roundToNearestPixel(18),
   },

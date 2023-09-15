@@ -1,6 +1,6 @@
 import { Image, StyleSheet, Text, View } from 'react-native'
 import { useContext } from "react"
-import { colors } from '../../Resources/colors'
+import { COLORS, colors } from '../../Resources/colors'
 import CustomHeader from '../../Components/CustomHeader'
 import { Table, Rows } from 'react-native-table-component'
 import { icon } from '../../Resources/Icons'
@@ -11,13 +11,13 @@ const Profile = () => {
 
   const tableData = [
     ['Agent Code', userId],
-    ['Agent Name', agentName],
+    // ['Agent Name', agentName],
     ['Email', agentEmail],
     ['Mobile No.', agentPhoneNumber],
     ['Maximum Limit (₹)', maximumAmount],
   ];
   return (
-    <View style={{ backgroundColor: colors.white }}>
+    <View style={{ backgroundColor: COLORS.lightScheme.background }}>
       <CustomHeader />
       <View style={styles.logoContainer}>
         <View style={{ width: '100%', alignSelf: 'center' }}>
@@ -31,13 +31,17 @@ const Profile = () => {
         </View>
       </View>
 
+      <View style={styles.nameContainer}>
+        <Text style={styles.containerText}>{`Welcome back! ${agentName}`}</Text>
+      </View>
+
       <View
         style={{
-          backgroundColor: colors.white,
+          backgroundColor: COLORS.lightScheme.background,
           height: '100%',
           padding: 20,
         }}>
-        <Table style={{ backgroundColor: colors.white }}>
+        <Table style={{ backgroundColor: COLORS.lightScheme.onTertiary }}>
           <Rows data={tableData} textStyle={styles.text} />
         </Table>
       </View>
@@ -48,15 +52,29 @@ const Profile = () => {
 export default Profile;
 
 const styles = StyleSheet.create({
+  nameContainer: {
+    margin: 20,
+    padding: 10,
+    backgroundColor: "teal",
+    height: 100,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 30
+  },
+  containerText: {
+    fontSize: 25,
+    color: COLORS.lightScheme.onPrimary
+  },
   text: {
-    color: colors.black,
-    fontWeight: '400',
-    borderBottomColor: colors.primary,
+    color: COLORS.lightScheme.onBackground,
+    fontWeight: '600',
+    borderBottomColor: COLORS.lightScheme.secondary,
     borderBottomWidth: 1,
     paddingVertical: 10,
+    fontSize: 14
   },
   logoContainer: {
-    backgroundColor: colors.secondaryBackground,
+    backgroundColor: COLORS.darkScheme.onBackground,
     borderBottomLeftRadius: 50,
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -68,7 +86,7 @@ const styles = StyleSheet.create({
   image: {
     height: 100,
     width: 100,
-    backgroundColor: colors.light_sea_green,
+    backgroundColor: COLORS.lightScheme.onTertiaryContainer,
     borderRadius: 50,
     alignSelf: 'center',
   },

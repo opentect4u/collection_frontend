@@ -6,7 +6,7 @@ import {
   Table,
   Rows,
 } from 'react-native-table-component'
-import { colors } from '../../Resources/colors'
+import { COLORS, colors } from '../../Resources/colors'
 import CustomHeader from '../../Components/CustomHeader'
 import { AppStore } from '../../Context/AppContext'
 // import { useIsFocused } from '@react-navigation/native';
@@ -108,7 +108,7 @@ const Home = ({ navigation }) => {
           style={{
             flex: 4,
             padding: 10,
-            backgroundColor: colors.whiteT,
+            backgroundColor: COLORS.lightScheme.background,
             margin: 20,
             borderRadius: 10,
           }}>
@@ -117,8 +117,8 @@ const Home = ({ navigation }) => {
           }>
             <Text style={styles.todayCollection}>Agent Information</Text>
             <Table
-              borderStyle={{ borderWidth: 2, borderColor: colors.primary, borderRadius: 10 }}
-              style={{ backgroundColor: colors.white }}>
+              borderStyle={{ borderWidth: 2, borderColor: COLORS.lightScheme.onTertiaryContainer, borderRadius: 10 }}
+              style={{ backgroundColor: COLORS.lightScheme.background }}>
               <Rows data={tableData} textStyle={styles.text} />
             </Table>
           </ScrollView>
@@ -136,13 +136,13 @@ const styles = StyleSheet.create({
   head: { height: 40, backgroundColor: '#f1f8ff' },
   text: {
     margin: 6,
-    color: colors.black,
+    color: COLORS.lightScheme.onTertiaryContainer,
     fontWeight: '400',
     fontSize: 18,
   },
   logoContainer: {
     flex: 2,
-    backgroundColor: colors.secondaryBackground,
+    backgroundColor: COLORS.lightScheme.secondaryContainer,
     borderBottomLeftRadius: 50,
     borderBottomRightRadius: 50,
     flexDirection: 'row',
@@ -152,21 +152,21 @@ const styles = StyleSheet.create({
   },
   grettingText: {
     fontSize: 20,
-    color: colors.secondary,
+    color: COLORS.lightScheme.onSecondaryContainer,
     letterSpacing: 1,
     fontWeight: '900',
     alignSelf: 'center',
   },
   manual: {
     fontSize: 16,
-    color: colors.primary,
+    color: COLORS.lightScheme.primary,
     letterSpacing: 1,
     fontWeight: '900',
     alignSelf: 'center',
   },
   todayCollection: {
-    backgroundColor: colors.secondary,
-    color: colors.whiteT,
+    backgroundColor: COLORS.lightScheme.primary,
+    color: COLORS.lightScheme.onPrimary,
     fontWeight: '600',
     textAlign: 'center',
     fontSize: PixelRatio.roundToNearestPixel(22),
