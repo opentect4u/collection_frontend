@@ -155,8 +155,13 @@ const ReportDay = () => {
             onCancel={hideEndingDatePicker}
           /> */}
 
-          <TouchableOpacity onPress={() => setShowModal(true)} style={styles.dateButton}>
+          {/* <TouchableOpacity onPress={() => setShowModal(true)} style={styles.dateButton}>
             <Text>Show Calendar</Text>
+          </TouchableOpacity> */}
+          <TouchableOpacity onPress={() => setShowModal(true)} style={{ justifyContent: "space-around", flexDirection: "row", backgroundColor: "forestgreen", padding: 10, margin: 10, borderRadius: 10, height: 40, width: "100%" }}>
+            {/* <Text>Show Calendar</Text> */}
+            <Text style={{ fontSize: 15, fontWeight: 500, color: COLORS.lightScheme.onPrimary, fontWeight: "bold" }}>From: {startDate}</Text>
+            <Text style={{ fontSize: 15, fontWeight: 500, color: COLORS.lightScheme.onPrimary, fontWeight: "bold" }}>To: {endDate}</Text>
           </TouchableOpacity>
           <Modal visible={showModal} animationType='fade'>
             <View style={{
@@ -175,10 +180,10 @@ const ReportDay = () => {
             </View>
           </Modal>
         </View>
-        <View style={{justifyContent: "space-around", flexDirection: "row", backgroundColor: "coral", padding: 10, margin: 10, borderRadius: 10}}>
+        {/* <View style={{justifyContent: "space-around", flexDirection: "row", backgroundColor: "coral", padding: 10, margin: 10, borderRadius: 10}}>
             <Text style={{ fontSize: 15, fontWeight: 500, color: COLORS.lightScheme.onPrimary, fontWeight: "bold" }}>From: {startDate}</Text>
             <Text style={{ fontSize: 15, fontWeight: 500, color: COLORS.lightScheme.onPrimary, fontWeight: "bold" }}>To: {endDate}</Text>
-          </View>
+          </View> */}
         <View>
           <TouchableOpacity onPress={() => handleSubmit()} style={styles.dateButton}>
             <Text>SUBMIT</Text>
@@ -187,7 +192,7 @@ const ReportDay = () => {
         <ScrollView>
           {tableData && <Table
             borderStyle={{ borderWidth: 2, borderColor: COLORS.lightScheme.secondary, borderRadius: 10 }}
-            style={{ backgroundColor: COLORS.lightScheme.primary }}>
+            style={{ backgroundColor: COLORS.lightScheme.background }}>
             <Row data={tableHead} textStyle={styles.head} />
             <Rows data={tableData} textStyle={styles.text} />
           </Table>}

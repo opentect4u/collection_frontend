@@ -191,8 +191,10 @@ const ReportType = () => {
             onConfirm={handleConfirmPickedToDate}
             onCancel={hideEndingDatePicker}
           /> */}
-          <TouchableOpacity onPress={() => setShowModal(true)} style={styles.dateButton}>
-            <Text style={{color: "white"}}>Show Calendar</Text>
+          <TouchableOpacity onPress={() => setShowModal(true)} style={{ justifyContent: "space-around", flexDirection: "row", backgroundColor: "coral", padding: 10, margin: 10, borderRadius: 10, height: 40, width: "100%" }}>
+            {/* <Text style={{color: "white"}}>Show Calendar</Text> */}
+            <Text style={{ fontSize: 15, fontWeight: 500, color: COLORS.lightScheme.onPrimary, fontWeight: "bold" }}>From: {startDate}</Text>
+            <Text style={{ fontSize: 15, fontWeight: 500, color: COLORS.lightScheme.onPrimary, fontWeight: "bold" }}>To: {endDate}</Text>
           </TouchableOpacity>
           <Modal visible={showModal} animationType='fade'>
             <View style={{
@@ -212,10 +214,10 @@ const ReportType = () => {
           </Modal>
         </View>
         <View>
-          <View style={{justifyContent: "space-around", flexDirection: "row", backgroundColor: "coral", padding: 10, margin: 10, borderRadius: 10}}>
+          {/* <View style={{justifyContent: "space-around", flexDirection: "row", backgroundColor: "coral", padding: 10, margin: 10, borderRadius: 10}}>
             <Text style={{ fontSize: 15, fontWeight: 500, color: COLORS.lightScheme.onPrimary, fontWeight: "bold" }}>From: {startDate}</Text>
             <Text style={{ fontSize: 15, fontWeight: 500, color: COLORS.lightScheme.onPrimary, fontWeight: "bold" }}>To: {endDate}</Text>
-          </View>
+          </View> */}
           {/* <DropdownComponent
             data={data}
             onFocus={() => setFocusDrop(true)}
