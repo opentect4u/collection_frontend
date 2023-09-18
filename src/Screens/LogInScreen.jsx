@@ -7,7 +7,7 @@ import {
   Image,
   ToastAndroid
 } from 'react-native';
-import { useState, useEffect, useContext } from 'react'
+import { useState, useEffect, useContext, useCallback } from 'react'
 import { COLORS, colors } from '../Resources/colors'
 import InputComponent from '../Components/InputComponent'
 import { Strings } from '../Resources/Strings'
@@ -16,6 +16,7 @@ import mainNavigationRoutes from '../Routes/NavigationRoutes'
 import { AppStore } from '../Context/AppContext'
 import SmoothPinCodeInput from 'react-native-smooth-pincode-input'
 import HeaderImage from "../Resources/Images/logo_cut.png"
+import { useFocusEffect } from '@react-navigation/native';
 
 const LogInScreen = ({ navigation }) => {
   const { isLogin, login, userId, agentName, getUserId, deviceId, setDeviceId, passcode, setPasscode, next, setNext } = useContext(AppStore)

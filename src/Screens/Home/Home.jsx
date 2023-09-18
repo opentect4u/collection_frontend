@@ -44,31 +44,6 @@ const Home = ({ navigation }) => {
     }, 2000)
   }, [])
 
-  // useFocusEffect(() => {
-  //   setRefreshing(true)
-  //   getTotalDepositAmount()
-  //   setTimeout(() => {
-  //     setRefreshing(false)
-  //     login()
-  //   }, 2000)
-  // }, [])
-
-  // const isFocused = useIsFocused()
-  // useEffect(() => {
-  //   if (isFocused) {
-  //     // getTotalDe123positAmount()
-  //     onRefresh()
-  //   }
-  // }, [navigation.isFocused()])
-
-  // useEffect(() => {
-  //   const focusEvent = navigation.addListener('focus', () => {
-  //     onRefresh()
-  //   })
-  //   // Return the function to unsubscribe from the event so it gets removed on unmount
-  //   return () => focusEvent
-  // }, [navigation])
-
   useFocusEffect(
 
     useCallback(() => {
