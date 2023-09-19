@@ -51,7 +51,7 @@ const FindAccountScreen = ({ navigation }) => {
       <View style={styles.container}>
         {/* Account Cards */}
 
-        <ScrollView style={{ maxHeight: "70%" }} keyboardShouldPersistTaps='handled'>
+        <ScrollView style={{ maxHeight: "65%" }} keyboardShouldPersistTaps='handled'>
           {userBankDetails &&
             userBankDetails?.map((props, index) => {
               console.log("========================", props)
