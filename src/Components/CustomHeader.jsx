@@ -1,4 +1,4 @@
-import { Image, Pressable, StyleSheet, Text, View } from 'react-native'
+import { Alert, Image, Pressable, StyleSheet, Text, View } from 'react-native'
 import React, { useContext, useState } from 'react'
 import { COLORS, colors } from '../Resources/colors'
 import { icon } from '../Resources/Icons'
@@ -13,6 +13,23 @@ const CustomHeader = () => {
   const { isLogin, setIsLogin, logout } = useContext(AppStore)
 
   const navigation = useNavigation()
+
+  const handleLogOut = () => {
+    Alert.alert("Logging out", "Are you sure you want to log out?", [
+      {
+        text: "No",
+        onPress: () => console.log('Cancel Pressed'),
+      },
+      {
+        text: "Yes",
+        onPress: () => {
+          logout()
+          console.log(isLogin)
+          navigation.navigate(mainNavigationRoutes.login)
+        },
+      }
+    ])
+  }
   return (
     <View style={styles.container}>
       <Text> </Text>
@@ -26,11 +43,7 @@ const CustomHeader = () => {
       )}
       {!isImageLoad && <Text style={{ color: COLORS.lightScheme.onBackground }}>Data Bank</Text>}
       <Pressable
-        onPress={() => {
-          logout()
-          console.log(isLogin)
-          navigation.navigate(mainNavigationRoutes.login)
-        }}>
+        onPress={handleLogOut}>
         {icon.logout(COLORS.lightScheme.secondary)}
       </Pressable>
     </View>
