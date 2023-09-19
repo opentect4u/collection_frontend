@@ -77,7 +77,7 @@ export default FindAccountScreen;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: COLORS.lightScheme.backgroundk,
+    backgroundColor: COLORS.lightScheme.background,
     height: '100%',
     padding: 10,
   },
