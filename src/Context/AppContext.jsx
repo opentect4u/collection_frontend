@@ -172,6 +172,11 @@ const AppContext = ({ children }) => {
     
     const logout = () => {
         setIsLogin(false)
+        setDeviceID("")
+        setUserId("")
+        setAgentName("")
+        setAgentEmail("")
+        setAgentPhoneNumber("")
         setPasscode('')
     }
 
