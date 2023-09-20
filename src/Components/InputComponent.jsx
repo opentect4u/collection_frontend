@@ -3,7 +3,7 @@ import React from 'react'
 import { COLORS, colors } from '../Resources/colors'
 import hide from '../Resources/Images/Icons/hide.png'
 
-const InputComponent = ({ handleChange, value, placeholder, label, readOnly = false, textHide = false, handlePasswordShow, keyboardType="default" }) => {
+const InputComponent = ({ handleChange, value, placeholder, label, readOnly = false, textHide = false, handlePasswordShow, keyboardType="default", autoFocus = true }) => {
     return (
         <View>
             {label && <Text style={styles.label}>
@@ -18,6 +18,7 @@ const InputComponent = ({ handleChange, value, placeholder, label, readOnly = fa
                 readOnly={readOnly}
                 keyboardType={keyboardType}
                 secureTextEntry={textHide}
+                autoFocus={autoFocus}
             />
             {handlePasswordShow && <TouchableOpacity style={styles.imageContainer} onPress={handlePasswordShow}>
                 {textHide ? <Image source={hide} style={styles.image} /> : <Image source={hide} style={styles.image} />}
@@ -33,9 +34,12 @@ const styles = StyleSheet.create({
         width: '100%',
         borderWidth: 1,
         borderColor: COLORS.lightScheme.primary,
-        borderRadius: PixelRatio.roundToNearestPixel(10),
+        borderRadius: PixelRatio.roundToNearestPixel(20),
         paddingHorizontal: 10,
-        color: COLORS.lightScheme.onSurface
+        paddingVertical: 15,
+        color: COLORS.lightScheme.onSurface,
+        fontSize: 22,
+        fontWeight: "bold"
     },
     label: {
         marginTop:5,

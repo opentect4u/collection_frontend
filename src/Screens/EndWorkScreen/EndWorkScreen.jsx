@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, ScrollView, ToastAndroid } from 'react-native'
-import { useContext, useState } from 'react'
+import { useCallback, useContext, useState } from 'react'
 import CustomHeader from '../../Components/CustomHeader'
 import { COLORS, colors } from '../../Resources/colors'
 import {
@@ -14,8 +14,9 @@ import MpinComponent from '../../Components/MpinComponent'
 import { AppStore } from '../../Context/AppContext'
 import axios from 'axios'
 import { REACT_APP_BASE_URL } from "../../Config/config"
+import { StackActions, useFocusEffect } from '@react-navigation/native'
 
-const EndWorkScreen = () => {
+const EndWorkScreen = ({ navigation }) => {
   const [isButtonEnabled, setIsButtonEnabled] = useState(() => false)
   const [endScreenPassword, setEndScreenPassword] = useState(() => "")
   const { userId, agentName, passcode, deviceId, bankId, branchCode, totalCollection, receiptNumber, maximumAmount } = useContext(AppStore)
@@ -90,10 +91,25 @@ const EndWorkScreen = () => {
   // } after CustomerHeader
 
 
+  const popAction = StackActions.popToTop()
+
+  useFocusEffect(
+    useCallback(() => {
+      // alert('Screen was focused')
+      navigation.dispatch(popAction)
+
+      return () => {
+        // alert('Screen was unfocused')
+        // // Useful for cleanup functions
+      }
+    }, [])
+  )
+
+
   return (
     <View style={{ flex: 1 }}>
       <CustomHeader />
-      
+
       <View >
         <View
           style={{

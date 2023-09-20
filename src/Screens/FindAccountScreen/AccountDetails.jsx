@@ -8,7 +8,7 @@ import {
   Pressable,
   ToastAndroid,
 } from 'react-native';
-import { useContext, useState, useEffect } from 'react'
+import { useContext, useState, useEffect, useCallback } from 'react'
 import { COLORS, colors } from '../../Resources/colors'
 import CustomHeader from '../../Components/CustomHeader'
 import {
@@ -22,6 +22,7 @@ import InputComponent from '../../Components/InputComponent'
 import ButtonComponent from '../../Components/ButtonComponent'
 import mainNavigationRoutes from '../../Routes/NavigationRoutes'
 import { AppStore } from '../../Context/AppContext';
+import { StackActions, useFocusEffect } from '@react-navigation/native';
 const AccountDetails = ({ navigation, route }) => {
   const [collectionMoney, setCollectionMoney] = useState(() => 0)
   const { modifiedAt, todayDateFromServer, holidayLock, getFlagsRequest, collectionFlag, endFlag } = useContext(AppStore)
@@ -32,7 +33,8 @@ const AccountDetails = ({ navigation, route }) => {
     ['Account Type', (item?.acc_type == 'D') ? "Daily" : (item?.acc_type == 'R') ? "RD" : (item?.acc_type == 'L') ? "Loan" : ""],
     ['Account No.', item?.account_number],
     ['Name', item?.customer_name],
-    ['Openning date', new Date(item?.opening_date).toLocaleDateString()],
+    ['Mobile No.', item?.mobile_no],
+    ['Opening date', new Date(item?.opening_date).toLocaleDateString()],
     ['Current Balance', item?.current_balance],
   ]
 
@@ -82,6 +84,18 @@ const AccountDetails = ({ navigation, route }) => {
     else if (collectionFlag == "N" && endFlag == "Y") return true
   }
 
+
+  // useFocusEffect(
+  //   useCallback(() => {
+  //     // alert('Screen was focused')
+  //     return () => {
+  //       // alert('Screen was unfocused')
+  //       // // Useful for cleanup functions
+  //       navigation.dispatch(StackActions.popToTop())
+  //     }
+  //   }, [])
+  // )
+
   return (
     <View>
       <CustomHeader />
@@ -106,9 +120,10 @@ const AccountDetails = ({ navigation, route }) => {
             <InputComponent
               keyboardType={'numeric'}
               placeholder={'Enter Valid Amount'}
-              label={'Collection Ammount'}
+              label={'Collection Amount'}
               value={collectionMoney}
               handleChange={setCollectionMoney}
+              autoFocus={true}
             />
             <View style={styles.buttonContainer}>
               <ButtonComponent
@@ -159,11 +174,23 @@ const AccountDetails = ({ navigation, route }) => {
 export default AccountDetails;
 
 const styles = StyleSheet.create({
+  // text: {
+  //   margin: 6,
+  //   color: COLORS.lightScheme.onBackground,
+  //   fontWeight: '400',
+  //   fontSize: 18,
+  // },
   text: {
     margin: 6,
     color: COLORS.lightScheme.onBackground,
     fontWeight: '400',
-    fontSize: 18,
+    fontSize: 13,
+  },
+  head: {
+    margin: 6,
+    color: COLORS.lightScheme.onBackground,
+    fontWeight: '900',
+    fontSize: 12,
   },
   info: {
     color: COLORS.lightScheme.primary,

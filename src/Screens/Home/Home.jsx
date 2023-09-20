@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, PixelRatio, ScrollView, RefreshControl } from 'react-native'
-import { useFocusEffect } from '@react-navigation/native'
+import { StackActions, useFocusEffect } from '@react-navigation/native'
 import { useState, useEffect, useContext, useCallback } from 'react'
 
 import {
@@ -44,10 +44,11 @@ const Home = ({ navigation }) => {
     }, 2000)
   }, [])
 
+
+  const popAction = StackActions.popToTop();
+
   useFocusEffect(
-
     useCallback(() => {
-
       // alert('Screen was focused')
       setRefreshing(true)
       getTotalDepositAmount()
@@ -55,6 +56,8 @@ const Home = ({ navigation }) => {
         setRefreshing(false)
         login()
       }, 2000)
+
+      navigation.dispatch(popAction)
 
       return () => {
         // alert('Screen was unfocused')

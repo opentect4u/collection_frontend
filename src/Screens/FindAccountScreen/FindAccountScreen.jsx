@@ -1,5 +1,5 @@
 import { AppState, ScrollView, StyleSheet, Text, View } from 'react-native'
-import { useContext, useEffect, useState } from 'react'
+import { useCallback, useContext, useEffect, useState } from 'react'
 import CustomHeader from '../../Components/CustomHeader'
 import { COLORS, colors } from '../../Resources/colors'
 import InputComponent from '../../Components/InputComponent'
@@ -7,6 +7,7 @@ import SearchCard from '../../Components/SearchCard'
 import axios from 'axios'
 import { REACT_APP_BASE_URL } from '../../Config/config'
 import { AppStore } from '../../Context/AppContext'
+import { useFocusEffect } from '@react-navigation/native'
 
 const FindAccountScreen = ({ navigation }) => {
 
@@ -45,13 +46,25 @@ const FindAccountScreen = ({ navigation }) => {
   }
 
 
+  useFocusEffect(
+    useCallback(() => {
+      // alert('Screen was focused')
+      return () => {
+        // alert('Screen was unfocused')
+        // // Useful for cleanup functions
+        changeSearchValue("")
+      }
+    }, [])
+  )
+
+
   return (
     <View>
       <CustomHeader />
       <View style={styles.container}>
         {/* Account Cards */}
 
-        <ScrollView style={{ maxHeight: "65%" }} keyboardShouldPersistTaps='handled'>
+        <ScrollView style={{ maxHeight: "55%" }} keyboardShouldPersistTaps='handled'>
           {userBankDetails &&
             userBankDetails?.map((props, index) => {
               console.log("========================", props)
@@ -66,6 +79,7 @@ const FindAccountScreen = ({ navigation }) => {
             placeholder={'Enter Account No. / Name'}
             value={searchValue}
             handleChange={changeSearchValue}
+            autoFocus={true}
           />
         </View>
       </View>
@@ -87,7 +101,7 @@ const styles = StyleSheet.create({
     width: '100%',
     alignSelf: 'center',
     backgroundColor: COLORS.lightScheme.tertiaryContainer,
-    padding: 10,
+    padding: 20,
     borderRadius: 10,
   },
 });

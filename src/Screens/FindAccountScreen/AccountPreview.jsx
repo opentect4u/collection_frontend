@@ -39,10 +39,14 @@ const AccountPreview = ({ navigation, route }) => {
     ['A/c Type', (item?.acc_type == 'D') ? "Daily" : (item?.acc_type == 'R') ? "RD" : (item?.acc_type == 'L') ? "Loan" : ""],
     ['A/c No.', item?.account_number],
     ['Name', item?.customer_name],
-    ['Openning date', new Date(item?.opening_date).toLocaleDateString()],
+    ['Mobile No.', item?.mobile_no],
+    ['Opening Date', new Date(item?.opening_date).toLocaleDateString()],
     ['Previous Balance', item?.current_balance],
-    ['Deposited Ammount', money],
-    ['Total Balance', item?.current_balance + parseFloat(money)],
+  ]
+
+  const netTotalSectionTableData = [
+    ['Deposit Amt.', money],
+    ['Current Balance', item?.current_balance + parseFloat(money)],
   ]
 
   const resetAction = StackActions.popToTop()
@@ -122,7 +126,25 @@ const AccountPreview = ({ navigation, route }) => {
               <Rows data={tableData} textStyle={styles.text} />
             </Table>
           </View>
-          {/* Input Field */}
+
+          {/* <View style={styles.netTotalTableContainer}>
+            <Table
+              borderStyle={{ borderWidth: 0, borderColor: COLORS.lightScheme.primary,  }}
+              style={{ backgroundColor: COLORS.lightScheme.onTertiary }}>
+              <Rows data={netTotalSectionTableData} textStyle={styles.netTotalText} />
+            </Table>
+          </View> */}
+
+
+          <View style={styles.inputContainer}>
+            <View style={styles.netTotalTableContainer}>
+              <Table
+                borderStyle={{ borderWidth: 1, borderColor: COLORS.lightScheme.primary, }}
+                style={{ backgroundColor: COLORS.lightScheme.secondaryContainer }}>
+                <Rows data={netTotalSectionTableData} textStyle={styles.netTotalText} />
+              </Table>
+            </View>
+            {/* Input Field */}
           <View style={styles.buttonContainer}>
             <ButtonComponent
               title={'Back'}
@@ -144,6 +166,7 @@ const AccountPreview = ({ navigation, route }) => {
               disabled={isSaveEnabled}
             />
           </View>
+          </View>
         </ScrollView>
       </View>
     </View>
@@ -159,6 +182,23 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     fontSize: 18,
   },
+  netTotalTableContainer: {
+    padding: 10,
+    // backgroundColor: COLORS.lightScheme.primary,
+    borderRadius: 15,
+  },
+  netTotalText: {
+    margin: 6,
+    color: "teal",
+    // fontWeight: 'bold',
+    fontSize: 18,
+  },
+  inputContainer: {
+    marginVertical: 10,
+    padding: 10,
+    backgroundColor: COLORS.lightScheme.secondaryContainer,
+    borderRadius: 5,
+  },
   info: {
     color: COLORS.lightScheme.primary,
     textAlign: 'center',
@@ -172,9 +212,9 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     marginVertical: 10,
-    padding: 10,
+    // padding: 10,
     paddingTop: -5,
-    backgroundColor: COLORS.lightScheme.onPrimary,
+    backgroundColor: COLORS.darkScheme.onSecondaryContainer,
     borderRadius: 5,
     flexDirection: 'row',
     justifyContent: 'space-around',
