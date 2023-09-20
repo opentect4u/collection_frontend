@@ -34,7 +34,7 @@ const AccountDetails = ({ navigation, route }) => {
     ['Account No.', item?.account_number],
     ['Name', item?.customer_name],
     ['Mobile No.', item?.mobile_no],
-    ['Opening date', new Date(item?.opening_date).toLocaleDateString()],
+    ['Opening date', new Date(item?.opening_date).toLocaleDateString("en-GB")],
     ['Current Balance', item?.current_balance],
   ]
 

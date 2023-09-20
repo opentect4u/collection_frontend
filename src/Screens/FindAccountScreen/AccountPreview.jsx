@@ -30,7 +30,7 @@ const AccountPreview = ({ navigation, route }) => {
   const [receiptNumber, setReceiptNumber] = useState(() => "")
   const [isSaveEnabled, setIsSaveEnabled] = useState(() => false)
 
-  const { id, userId, maximumAmount, getTotalDepositAmount, totalDepositedAmount } = useContext(AppStore)
+  const { id, userId, maximumAmount, getTotalDepositAmount, totalDepositedAmount, todayDateFromServer } = useContext(AppStore)
   const { item, money } = route.params
 
   // const [addedMoney, setAddedMoney] = useState(() => 0)
@@ -40,11 +40,12 @@ const AccountPreview = ({ navigation, route }) => {
     ['A/c No.', item?.account_number],
     ['Name', item?.customer_name],
     ['Mobile No.', item?.mobile_no],
-    ['Opening Date', new Date(item?.opening_date).toLocaleDateString()],
+    ['Opening Date', new Date(item?.opening_date).toLocaleDateString("en-GB")],
     ['Previous Balance', item?.current_balance],
   ]
 
   const netTotalSectionTableData = [
+    ['Tnx. Date', new Date(todayDateFromServer).toLocaleDateString("en-GB")],
     ['Deposit Amt.', money],
     ['Current Balance', item?.current_balance + parseFloat(money)],
   ]
@@ -66,8 +67,9 @@ const AccountPreview = ({ navigation, route }) => {
       navigation.dispatch(resetAction)
     }).catch(err => {
       console.log(err.response.data)
+      alert("Data already submitted. Please upload new dataset.")
       ToastAndroid.showWithGravityAndOffset(
-        'You ended your work or error in the server.',
+        'Data already submitted. Please upload new dataset.',
         ToastAndroid.SHORT,
         ToastAndroid.CENTER,
         25,

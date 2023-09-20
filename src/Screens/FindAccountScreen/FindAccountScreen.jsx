@@ -53,6 +53,7 @@ const FindAccountScreen = ({ navigation }) => {
         // alert('Screen was unfocused')
         // // Useful for cleanup functions
         changeSearchValue("")
+        setUserBankDetails([])
       }
     }, [])
   )

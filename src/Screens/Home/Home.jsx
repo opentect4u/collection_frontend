@@ -30,8 +30,8 @@ const Home = ({ navigation }) => {
     ['Branch', branchName],
     ['Agent Code', userId],
     ['Agent Name', agentName],
-    ['Date', currentDateTime.toLocaleDateString()],
-    ['Time', currentDateTime.toLocaleTimeString()],
+    ['Date', currentDateTime.toLocaleDateString("en-GB")],
+    ['Time', currentDateTime.toLocaleTimeString("en-GB")],
     ['Total Collection', totalCollection.toFixed(2)],
   ]
 

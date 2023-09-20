@@ -53,8 +53,9 @@ const EndWorkScreen = ({ navigation }) => {
       setIsButtonEnabled(!isButtonEnabled)
     }).catch(err => {
       console.log("############", err.response.data)
+      alert("Collection already submitted.")
       ToastAndroid.showWithGravityAndOffset(
-        "You can not resubmit your data.",
+        "Collection already submitted.",
         ToastAndroid.SHORT,
         ToastAndroid.CENTER,
         25,

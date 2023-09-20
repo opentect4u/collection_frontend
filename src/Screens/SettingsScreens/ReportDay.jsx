@@ -160,8 +160,8 @@ const ReportDay = () => {
           </TouchableOpacity> */}
           <TouchableOpacity onPress={() => setShowModal(true)} style={{ justifyContent: "space-around", flexDirection: "row", backgroundColor: "forestgreen", padding: 10, margin: 10, borderRadius: 10, height: 40, width: "100%" }}>
             {/* <Text>Show Calendar</Text> */}
-            <Text style={{ fontSize: 15, fontWeight: 500, color: COLORS.lightScheme.onPrimary, fontWeight: "bold" }}>From: {startDate}</Text>
-            <Text style={{ fontSize: 15, fontWeight: 500, color: COLORS.lightScheme.onPrimary, fontWeight: "bold" }}>To: {endDate}</Text>
+            <Text style={{ fontSize: 15, fontWeight: 500, color: COLORS.lightScheme.onPrimary, fontWeight: "bold" }}>From: {new Date(startDate).toLocaleDateString("en-GB")}</Text>
+            <Text style={{ fontSize: 15, fontWeight: 500, color: COLORS.lightScheme.onPrimary, fontWeight: "bold" }}>To: {new Date(endDate).toLocaleDateString("en-GB")}</Text>
           </TouchableOpacity>
           <Modal visible={showModal} animationType='fade'>
             <View style={{
