@@ -5,14 +5,14 @@ import {
   TouchableOpacity,
   View,
 } from "react-native"
-import {icon} from "../../Resources/Icons"
-import {COLORS, colors} from "../../Resources/colors"
+import { icon } from "../../Resources/Icons"
+import { COLORS, colors } from "../../Resources/colors"
 import CustomHeader from "../../Components/CustomHeader"
 import mainNavigationRoutes from "../../Routes/NavigationRoutes"
-import {StackActions, useFocusEffect} from "@react-navigation/native"
-import {useCallback} from "react"
+import { StackActions, useFocusEffect } from "@react-navigation/native"
+import { useCallback } from "react"
 
-const SettingScreen = ({navigation}) => {
+const SettingScreen = ({ navigation }) => {
   const popAction = StackActions.popToTop()
 
   useFocusEffect(

@@ -6,15 +6,15 @@ import {
   ScrollView,
   RefreshControl,
 } from "react-native"
-import {StackActions, useFocusEffect} from "@react-navigation/native"
-import {useState, useEffect, useContext, useCallback} from "react"
+import { StackActions, useFocusEffect } from "@react-navigation/native"
+import { useState, useEffect, useContext, useCallback } from "react"
 
-import {Table, Rows} from "react-native-table-component"
-import {COLORS, colors} from "../../Resources/colors"
+import { Table, Rows } from "react-native-table-component"
+import { COLORS, colors } from "../../Resources/colors"
 import CustomHeader from "../../Components/CustomHeader"
-import {AppStore} from "../../Context/AppContext"
+import { AppStore } from "../../Context/AppContext"
 // import { useIsFocused } from '@react-navigation/native';
-const Home = ({navigation}) => {
+const Home = ({ navigation }) => {
   const {
     userId,
     agentName,
@@ -78,11 +78,11 @@ const Home = ({navigation}) => {
 
   return (
     <>
-      <View style={{flex: 1}}>
+      <View style={{ flex: 1 }}>
         <CustomHeader />
 
         <View style={styles.logoContainer}>
-          <View style={{width: "100%"}}>
+          <View style={{ width: "100%" }}>
             {/* Welcome gretting */}
             <Text style={styles.grettingText}>Welcome To {"Data Bank"}</Text>
             {/* manual text */}
@@ -124,7 +124,7 @@ const Home = ({navigation}) => {
 export default Home
 
 const styles = StyleSheet.create({
-  head: {height: 40, backgroundColor: "#f1f8ff"},
+  head: { height: 40, backgroundColor: "#f1f8ff" },
   text: {
     margin: 6,
     color: COLORS.lightScheme.onTertiaryContainer,

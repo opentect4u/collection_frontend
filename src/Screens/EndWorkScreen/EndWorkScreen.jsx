@@ -1,16 +1,22 @@
-import {StyleSheet, Text, View, ScrollView, ToastAndroid} from "react-native"
-import {useCallback, useContext, useState} from "react"
+import { StyleSheet, Text, View, ScrollView, ToastAndroid } from "react-native"
+import { useCallback, useContext, useState } from "react"
 import CustomHeader from "../../Components/CustomHeader"
-import {COLORS, colors} from "../../Resources/colors"
-import {Table, TableWrapper, Row, Rows, Col} from "react-native-table-component"
+import { COLORS, colors } from "../../Resources/colors"
+import {
+  Table,
+  TableWrapper,
+  Row,
+  Rows,
+  Col,
+} from "react-native-table-component"
 import ButtonComponent from "../../Components/ButtonComponent"
 import MpinComponent from "../../Components/MpinComponent"
-import {AppStore} from "../../Context/AppContext"
+import { AppStore } from "../../Context/AppContext"
 import axios from "axios"
-import {REACT_APP_BASE_URL} from "../../Config/config"
-import {StackActions, useFocusEffect} from "@react-navigation/native"
+import { REACT_APP_BASE_URL } from "../../Config/config"
+import { StackActions, useFocusEffect } from "@react-navigation/native"
 
-const EndWorkScreen = ({navigation}) => {
+const EndWorkScreen = ({ navigation }) => {
   const [isButtonEnabled, setIsButtonEnabled] = useState(() => false)
   const [endScreenPassword, setEndScreenPassword] = useState(() => "")
   const {
@@ -117,7 +123,7 @@ const EndWorkScreen = ({navigation}) => {
   )
 
   return (
-    <View style={{flex: 1}}>
+    <View style={{ flex: 1 }}>
       <CustomHeader />
 
       <View>
@@ -137,7 +143,7 @@ const EndWorkScreen = ({navigation}) => {
                 borderWidth: 1,
                 borderColor: COLORS.lightScheme.tertiary,
               }}
-              style={{backgroundColor: COLORS.lightScheme.onPrimary}}>
+              style={{ backgroundColor: COLORS.lightScheme.onPrimary }}>
               <Rows data={tableData} textStyle={styles.text} />
             </Table>
             <MpinComponent
@@ -146,7 +152,7 @@ const EndWorkScreen = ({navigation}) => {
             />
             <ButtonComponent
               title={"End Work"}
-              customStyle={{marginTop: 10}}
+              customStyle={{ marginTop: 10 }}
               handleOnpress={handleEndWorkButton}
               disabled={isButtonEnabled}
             />

@@ -1,9 +1,9 @@
-import { StyleSheet, Text, View } from 'react-native'
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import mainNavigationRoutes from '../Routes/NavigationRoutes'
-import FindAccountScreen from '../Screens/FindAccountScreen/FindAccountScreen'
-import AccountDetails from '../Screens/FindAccountScreen/AccountDetails'
-import AccountPreview from '../Screens/FindAccountScreen/AccountPreview'
+import { StyleSheet, Text, View } from "react-native"
+import { createNativeStackNavigator } from "@react-navigation/native-stack"
+import mainNavigationRoutes from "../Routes/NavigationRoutes"
+import FindAccountScreen from "../Screens/FindAccountScreen/FindAccountScreen"
+import AccountDetails from "../Screens/FindAccountScreen/AccountDetails"
+import AccountPreview from "../Screens/FindAccountScreen/AccountPreview"
 const Stack = createNativeStackNavigator()
 
 const AccountFindNavigation = () => {
@@ -25,9 +25,9 @@ const AccountFindNavigation = () => {
         />
       </Stack.Navigator>
     </>
-  );
-};
+  )
+}
 
-export default AccountFindNavigation;
+export default AccountFindNavigation
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({})

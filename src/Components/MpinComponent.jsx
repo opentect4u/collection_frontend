@@ -1,11 +1,11 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import SmoothPinCodeInput from 'react-native-smooth-pincode-input'
-import { COLORS, colors } from '../Resources/colors'
+import { StyleSheet, Text, View } from "react-native"
+import React from "react"
+import SmoothPinCodeInput from "react-native-smooth-pincode-input"
+import { COLORS, colors } from "../Resources/colors"
 
 const MpinComponent = ({ value, handleChange }) => {
   return (
-    <View style={{ padding: 10, alignItems: 'center' }}>
+    <View style={{ padding: 10, alignItems: "center" }}>
       <SmoothPinCodeInput
         placeholder="?"
         mask={
@@ -28,7 +28,7 @@ const MpinComponent = ({ value, handleChange }) => {
         value={value}
         onTextChange={code => handleChange(code)}
         onBackspace={() => {
-          console.warn('hello');
+          console.warn("hello")
         }}
       />
     </View>
