@@ -4,16 +4,15 @@ import {
   Text,
   TouchableOpacity,
   View,
-} from 'react-native';
-import { icon } from '../../Resources/Icons';
-import { COLORS, colors } from '../../Resources/colors';
-import CustomHeader from '../../Components/CustomHeader';
-import mainNavigationRoutes from '../../Routes/NavigationRoutes';
-import { StackActions, useFocusEffect } from '@react-navigation/native';
-import { useCallback } from 'react';
+} from "react-native"
+import {icon} from "../../Resources/Icons"
+import {COLORS, colors} from "../../Resources/colors"
+import CustomHeader from "../../Components/CustomHeader"
+import mainNavigationRoutes from "../../Routes/NavigationRoutes"
+import {StackActions, useFocusEffect} from "@react-navigation/native"
+import {useCallback} from "react"
 
-const SettingScreen = ({ navigation }) => {
-
+const SettingScreen = ({navigation}) => {
   const popAction = StackActions.popToTop()
 
   useFocusEffect(
@@ -25,9 +24,8 @@ const SettingScreen = ({ navigation }) => {
         // alert('Screen was unfocused')
         // // Useful for cleanup functions
       }
-    }, [])
+    }, []),
   )
-
 
   return (
     <>
@@ -58,7 +56,9 @@ const SettingScreen = ({ navigation }) => {
         </TouchableOpacity>
 
         <TouchableOpacity
-          onPress={() => navigation.navigate(mainNavigationRoutes.reportChooseScreen)}
+          onPress={() =>
+            navigation.navigate(mainNavigationRoutes.reportChooseScreen)
+          }
           style={styles.cardContainer}>
           {/* Icon */}
           {icon.report(COLORS.lightScheme.primary, 45)}
@@ -76,29 +76,29 @@ const SettingScreen = ({ navigation }) => {
         </View>
       </View>
     </>
-  );
-};
+  )
+}
 
-export default SettingScreen;
+export default SettingScreen
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
+    flexDirection: "row",
+    flexWrap: "wrap",
     padding: 10,
-    justifyContent: 'space-evenly',
+    justifyContent: "space-evenly",
     backgroundColor: COLORS.lightScheme.background,
-    height: '100%',
+    height: "100%",
   },
   cardContainer: {
     backgroundColor: COLORS.lightScheme.onPrimary,
-    alignItems: 'center',
-    width: '45%',
+    alignItems: "center",
+    width: "45%",
     height: 150, //
     padding: 10,
     margin: 5,
     borderRadius: 10,
-    justifyContent: 'center',
+    justifyContent: "center",
     elevation: 10,
   },
   label: {
@@ -106,4 +106,4 @@ const styles = StyleSheet.create({
     padding: 10,
     fontSize: PixelRatio.roundToNearestPixel(18),
   },
-});
+})

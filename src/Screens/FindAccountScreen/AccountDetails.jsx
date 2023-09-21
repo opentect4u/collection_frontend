@@ -84,18 +84,6 @@ const AccountDetails = ({ navigation, route }) => {
     else if (collectionFlag == "N" && endFlag == "Y") return true
   }
 
-
-  // useFocusEffect(
-  //   useCallback(() => {
-  //     // alert('Screen was focused')
-  //     return () => {
-  //       // alert('Screen was unfocused')
-  //       // // Useful for cleanup functions
-  //       navigation.dispatch(StackActions.popToTop())
-  //     }
-  //   }, [])
-  // )
-
   return (
     <View>
       <CustomHeader />

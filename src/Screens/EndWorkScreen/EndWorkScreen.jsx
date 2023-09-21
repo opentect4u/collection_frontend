@@ -1,67 +1,79 @@
-import { StyleSheet, Text, View, ScrollView, ToastAndroid } from 'react-native'
-import { useCallback, useContext, useState } from 'react'
-import CustomHeader from '../../Components/CustomHeader'
-import { COLORS, colors } from '../../Resources/colors'
-import {
-  Table,
-  TableWrapper,
-  Row,
-  Rows,
-  Col,
-} from 'react-native-table-component'
-import ButtonComponent from '../../Components/ButtonComponent'
-import MpinComponent from '../../Components/MpinComponent'
-import { AppStore } from '../../Context/AppContext'
-import axios from 'axios'
-import { REACT_APP_BASE_URL } from "../../Config/config"
-import { StackActions, useFocusEffect } from '@react-navigation/native'
+import {StyleSheet, Text, View, ScrollView, ToastAndroid} from "react-native"
+import {useCallback, useContext, useState} from "react"
+import CustomHeader from "../../Components/CustomHeader"
+import {COLORS, colors} from "../../Resources/colors"
+import {Table, TableWrapper, Row, Rows, Col} from "react-native-table-component"
+import ButtonComponent from "../../Components/ButtonComponent"
+import MpinComponent from "../../Components/MpinComponent"
+import {AppStore} from "../../Context/AppContext"
+import axios from "axios"
+import {REACT_APP_BASE_URL} from "../../Config/config"
+import {StackActions, useFocusEffect} from "@react-navigation/native"
 
-const EndWorkScreen = ({ navigation }) => {
+const EndWorkScreen = ({navigation}) => {
   const [isButtonEnabled, setIsButtonEnabled] = useState(() => false)
   const [endScreenPassword, setEndScreenPassword] = useState(() => "")
-  const { userId, agentName, passcode, deviceId, bankId, branchCode, totalCollection, receiptNumber, maximumAmount } = useContext(AppStore)
-
+  const {
+    userId,
+    agentName,
+    passcode,
+    deviceId,
+    bankId,
+    branchCode,
+    totalCollection,
+    receiptNumber,
+    maximumAmount,
+  } = useContext(AppStore)
 
   const tableData = [
-    ['Agent Code', userId],
-    ['Agent Name', agentName],
-    ['Branch Code', branchCode],
-    ['Max Collection', maximumAmount],
-    ['Today Collection', totalCollection],
-    ['Remaing Collection', maximumAmount - totalCollection],
+    ["Agent Code", userId],
+    ["Agent Name", agentName],
+    ["Branch Code", branchCode],
+    ["Max Collection", maximumAmount],
+    ["Today Collection", totalCollection],
+    ["Remaing Collection", maximumAmount - totalCollection],
   ]
 
-
-
   const endCollection = async () => {
-    const obj = { user_id: userId, password: passcode, device_id: deviceId, bank_id: bankId, branch_code: branchCode, agent_code: userId, coll_flag: "Y" }
+    const obj = {
+      user_id: userId,
+      password: passcode,
+      device_id: deviceId,
+      bank_id: bankId,
+      branch_code: branchCode,
+      agent_code: userId,
+      coll_flag: "Y",
+    }
     console.log("XXX===========DDDDD", obj)
-    await axios.post(`${REACT_APP_BASE_URL}/user/end_collection`, obj, {
-      headers: {
-        Accept: 'application/json',
-      }
-    }).then(res => {
-      // console.log("###### Preview: ", res.data)
-      alert("Your work has been submitted.")
-      ToastAndroid.showWithGravityAndOffset(
-        "Your work has been submitted.",
-        ToastAndroid.SHORT,
-        ToastAndroid.CENTER,
-        25,
-        50,
-      )
-      setIsButtonEnabled(!isButtonEnabled)
-    }).catch(err => {
-      console.log("############", err.response.data)
-      alert("Collection already submitted.")
-      ToastAndroid.showWithGravityAndOffset(
-        "Collection already submitted.",
-        ToastAndroid.SHORT,
-        ToastAndroid.CENTER,
-        25,
-        50,
-      )
-    })
+    await axios
+      .post(`${REACT_APP_BASE_URL}/user/end_collection`, obj, {
+        headers: {
+          Accept: "application/json",
+        },
+      })
+      .then(res => {
+        // console.log("###### Preview: ", res.data)
+        alert("Your work has been submitted.")
+        ToastAndroid.showWithGravityAndOffset(
+          "Your work has been submitted.",
+          ToastAndroid.SHORT,
+          ToastAndroid.CENTER,
+          25,
+          50,
+        )
+        setIsButtonEnabled(!isButtonEnabled)
+      })
+      .catch(err => {
+        console.log("############", err.response.data)
+        alert("Collection already submitted.")
+        ToastAndroid.showWithGravityAndOffset(
+          "Collection already submitted.",
+          ToastAndroid.SHORT,
+          ToastAndroid.CENTER,
+          25,
+          50,
+        )
+      })
   }
 
   const handleEndWorkButton = () => {
@@ -71,14 +83,13 @@ const EndWorkScreen = ({ navigation }) => {
         // setIsButtonEnabled(true)
         setEndScreenPassword("")
       } else {
-        alert('Invalid Password')
+        alert("Invalid Password")
       }
     } catch (error) {
       console.log(error)
       setEndScreenPassword("")
     }
   }
-
 
   // {
   //   <View style={styles.logoContainer}>
@@ -91,7 +102,6 @@ const EndWorkScreen = ({ navigation }) => {
   //     </View>
   // } after CustomerHeader
 
-
   const popAction = StackActions.popToTop()
 
   useFocusEffect(
@@ -103,42 +113,51 @@ const EndWorkScreen = ({ navigation }) => {
         // alert('Screen was unfocused')
         // // Useful for cleanup functions
       }
-    }, [])
+    }, []),
   )
 
-
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{flex: 1}}>
       <CustomHeader />
 
-      <View >
+      <View>
         <View
           style={{
             padding: 10,
             backgroundColor: COLORS.lightScheme.onPrimary,
             margin: 20,
             borderRadius: 10,
-            justifyContent: 'center',
-            alignContent: "center"
+            justifyContent: "center",
+            alignContent: "center",
           }}>
           <ScrollView keyboardShouldPersistTaps="handled">
             <Text style={styles.todayCollection}>Today's Collections</Text>
             <Table
-              borderStyle={{ borderWidth: 1, borderColor: COLORS.lightScheme.tertiary }}
-              style={{ backgroundColor: COLORS.lightScheme.onPrimary }}>
+              borderStyle={{
+                borderWidth: 1,
+                borderColor: COLORS.lightScheme.tertiary,
+              }}
+              style={{backgroundColor: COLORS.lightScheme.onPrimary}}>
               <Rows data={tableData} textStyle={styles.text} />
             </Table>
-            <MpinComponent value={endScreenPassword} handleChange={setEndScreenPassword} />
-            <ButtonComponent title={"End Work"} customStyle={{ marginTop: 10 }} handleOnpress={handleEndWorkButton} disabled={isButtonEnabled} />
+            <MpinComponent
+              value={endScreenPassword}
+              handleChange={setEndScreenPassword}
+            />
+            <ButtonComponent
+              title={"End Work"}
+              customStyle={{marginTop: 10}}
+              handleOnpress={handleEndWorkButton}
+              disabled={isButtonEnabled}
+            />
           </ScrollView>
         </View>
-
       </View>
     </View>
-  );
-};
+  )
+}
 
-export default EndWorkScreen;
+export default EndWorkScreen
 
 const styles = StyleSheet.create({
   // logoContainer: {
@@ -168,13 +187,13 @@ const styles = StyleSheet.create({
   text: {
     margin: 6,
     color: COLORS.lightScheme.onPrimaryContainer,
-    fontWeight: '400',
+    fontWeight: "400",
     fontSize: 18,
-    letterSpacing: 1
+    letterSpacing: 1,
   },
   todayCollection: {
     marginBottom: 10,
     textAlign: "center",
-    fontSize: 20
-  }
-});
+    fontSize: 20,
+  },
+})
