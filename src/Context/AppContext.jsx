@@ -78,7 +78,7 @@ const AppContext = ({ children }) => {
 
         setReceiptNumber(res.data.success.setting.msg[0].receipt_no)
         setModifiedAt(new Date(res.data.success.setting.msg[0].modified_at))
-        setHolidayLock(res.data.success.setting.msg[0].holiday_lock)
+        setHolidayLock(res.data.success.setting.msg[0].allow_collection_days)
       })
       .catch(err => {
         console.error("========>>>>>>>>", err.response.data)
