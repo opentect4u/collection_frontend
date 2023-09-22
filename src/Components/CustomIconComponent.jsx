@@ -1,6 +1,6 @@
-import { View, Image } from 'react-native'
-import React from 'react'
-import { COLORS, colors } from '../Resources/colors'
+import { View, Image } from "react-native"
+import React from "react"
+import { COLORS, colors } from "../Resources/colors"
 
 const CustomIconComponent = (source, focus) => {
   return (
@@ -8,7 +8,10 @@ const CustomIconComponent = (source, focus) => {
       <Image
         source={source}
         resizeMode="contain"
-        style={{ width: 25, backgroundColor: focus ? COLORS.lightScheme.onTertiaryContainer : "" }}
+        style={{
+          width: 25,
+          backgroundColor: focus ? COLORS.lightScheme.onTertiaryContainer : "",
+        }}
       />
     </View>
   )

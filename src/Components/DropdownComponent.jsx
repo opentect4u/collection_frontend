@@ -1,30 +1,28 @@
-import React, { useState } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
-import { Dropdown } from 'react-native-element-dropdown'
+import React, { useState } from "react"
+import { StyleSheet, Text, View } from "react-native"
+import { Dropdown } from "react-native-element-dropdown"
 // import AntDesign from '@expo/vector-icons/AntDesign'
 
-
-
-const DropdownComponent = ({ children, data = [{},] }) => {
+const DropdownComponent = ({ children, data = [{}] }) => {
   const [value, setValue] = useState(null)
   const [isFocus, setIsFocus] = useState(false)
 
   const renderLabel = () => {
     if (value || isFocus) {
       return (
-        <Text style={[styles.label, isFocus && { color: 'blue' }]}>
+        <Text style={[styles.label, isFocus && { color: "blue" }]}>
           {children}
         </Text>
-      );
+      )
     }
-    return null;
-  };
+    return null
+  }
 
   return (
     <View style={styles.container}>
       {renderLabel()}
       <Dropdown
-        style={[styles.dropdown, isFocus && { borderColor: 'blue' }]}
+        style={[styles.dropdown, isFocus && { borderColor: "blue" }]}
         placeholderStyle={styles.placeholderStyle}
         selectedTextStyle={styles.selectedTextStyle}
         inputSearchStyle={styles.inputSearchStyle}
@@ -34,7 +32,7 @@ const DropdownComponent = ({ children, data = [{},] }) => {
         maxHeight={300}
         labelField="label"
         valueField="value"
-        placeholder={!isFocus ? 'Select type' : '...'}
+        placeholder={!isFocus ? "Select type" : "..."}
         searchPlaceholder="Search..."
         value={value}
         onFocus={() => setIsFocus(true)}
@@ -53,19 +51,19 @@ const DropdownComponent = ({ children, data = [{},] }) => {
         // )}
       />
     </View>
-  );
-};
+  )
+}
 
 export default DropdownComponent
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'white',
+    backgroundColor: "white",
     padding: 16,
   },
   dropdown: {
     height: 50,
-    borderColor: 'gray',
+    borderColor: "gray",
     borderWidth: 0.5,
     borderRadius: 8,
     paddingHorizontal: 8,
@@ -74,8 +72,8 @@ const styles = StyleSheet.create({
     marginRight: 5,
   },
   label: {
-    position: 'absolute',
-    backgroundColor: 'white',
+    position: "absolute",
+    backgroundColor: "white",
     left: 22,
     top: 8,
     zIndex: 999,
@@ -96,4 +94,4 @@ const styles = StyleSheet.create({
     height: 40,
     fontSize: 16,
   },
-});
+})

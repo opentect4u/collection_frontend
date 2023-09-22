@@ -42,7 +42,6 @@
 //     )
 // }
 
-
 // export default DateRangePicker
 // const styles = StyleSheet.create({
 //     container: {

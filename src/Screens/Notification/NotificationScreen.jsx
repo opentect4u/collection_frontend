@@ -1,7 +1,7 @@
-import {ScrollView, StyleSheet, Text, View} from 'react-native'
-import {colors} from '../../Resources/colors'
-import CustomHeader from '../../Components/CustomHeader'
-import { icon } from '../../Resources/Icons'
+import { ScrollView, StyleSheet, Text, View } from "react-native"
+import { colors } from "../../Resources/colors"
+import CustomHeader from "../../Components/CustomHeader"
+import { icon } from "../../Resources/Icons"
 
 const NotificationScreen = () => {
   return (
@@ -11,20 +11,9 @@ const NotificationScreen = () => {
     //     <ScrollView>
     //       {/* Notification card */}
 
-          
     //       <View style={styles.notyCard}>
     //        <Text style={styles.notyText}>
-    //         Demo Notifiaction Demo Notifiaction 
-    //        </Text>
-    //        <View style={{backgroundColor:colors.light_green,padding:10,borderRadius:100,width:45}}>
-    //         {icon.notifications(colors.secondary)}
-    //        </View>
-    //       </View>
-
-
-    //       <View style={styles.notyCard}>
-    //        <Text style={styles.notyText}>
-    //         Demo Notifiaction Demo Notifiaction 
+    //         Demo Notifiaction Demo Notifiaction
     //        </Text>
     //        <View style={{backgroundColor:colors.light_green,padding:10,borderRadius:100,width:45}}>
     //         {icon.notifications(colors.secondary)}
@@ -33,7 +22,16 @@ const NotificationScreen = () => {
 
     //       <View style={styles.notyCard}>
     //        <Text style={styles.notyText}>
-    //         Demo Notifiaction Demo Notifiaction 
+    //         Demo Notifiaction Demo Notifiaction
+    //        </Text>
+    //        <View style={{backgroundColor:colors.light_green,padding:10,borderRadius:100,width:45}}>
+    //         {icon.notifications(colors.secondary)}
+    //        </View>
+    //       </View>
+
+    //       <View style={styles.notyCard}>
+    //        <Text style={styles.notyText}>
+    //         Demo Notifiaction Demo Notifiaction
     //        </Text>
     //        <View style={{backgroundColor:colors.light_green,padding:10,borderRadius:100,width:45}}>
     //         {icon.notifications(colors.secondary)}
@@ -41,7 +39,7 @@ const NotificationScreen = () => {
     //       </View>
     //       <View style={styles.notyCard}>
     //        <Text style={styles.notyText}>
-    //         Demo Notifiaction Demo Notifiaction 
+    //         Demo Notifiaction Demo Notifiaction
     //        </Text>
     //        <View style={{backgroundColor:colors.light_green,padding:10,borderRadius:100,width:45}}>
     //         {icon.notifications(colors.secondary)}
@@ -51,10 +49,10 @@ const NotificationScreen = () => {
     //   </View>
     // </View>
     <></>
-  );
-};
+  )
+}
 
-export default NotificationScreen;
+export default NotificationScreen
 
 // const styles = StyleSheet.create({
 //   container: {
