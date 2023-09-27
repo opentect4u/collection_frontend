@@ -19,6 +19,7 @@ const AppContext = ({ children }) => {
   const [branchName, setBranchName] = useState(() => "")
   const [branchCode, setBranchCode] = useState(() => "")
   const [deviceId, setDeviceID] = useState(() => DeviceInfo.getUniqueIdSync())
+  // const [deviceId, setDeviceID] = useState(() => "adac9523c863fb73")
   const [passcode, setPasscode] = useState(() => "")
   const [totalCollection, setTotalCollection] = useState(() => 0)
   const [receiptNumber, setReceiptNumber] = useState(() => 0)
