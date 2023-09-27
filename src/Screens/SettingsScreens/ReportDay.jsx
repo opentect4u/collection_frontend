@@ -17,6 +17,7 @@ import { Table, Rows, Row } from "react-native-table-component"
 import axios from "axios"
 import { REACT_APP_BASE_URL } from "../../Config/config"
 import CalendarPicker from "react-native-calendar-picker"
+import { address } from "../../Routes/addresses"
 
 const ReportDay = () => {
   const { userId, bankId, branchCode } = useContext(AppStore)
@@ -96,7 +97,7 @@ const ReportDay = () => {
     }
     let totalDepositedAmount = 0
     await axios
-      .post(`${REACT_APP_BASE_URL}/user/day_scroll_report`, obj, {
+      .post(address.DAY_SCROLL_REPORT, obj, {
         headers: {
           Accept: "application/json",
         },

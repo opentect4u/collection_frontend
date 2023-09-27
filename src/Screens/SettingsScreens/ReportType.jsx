@@ -22,6 +22,7 @@ import DropdownComponent from "../../Components/DropdownComponent"
 // import Calendar from "react-native-calendar-range-picker"
 import CalendarPicker from "react-native-calendar-picker"
 import { Dropdown } from "react-native-element-dropdown"
+import { address } from "../../Routes/addresses"
 
 const ReportType = () => {
   const { userId, bankId, branchCode } = useContext(AppStore)
@@ -120,7 +121,7 @@ const ReportType = () => {
     }
     let totalDepositedAmount = 0
     await axios
-      .post(`${REACT_APP_BASE_URL}/user/type_wise_report`, obj, {
+      .post(address.TYPE_WISE_REPORT, obj, {
         headers: {
           Accept: "application/json",
         },

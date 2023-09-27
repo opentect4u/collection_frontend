@@ -3,6 +3,7 @@ import axios from "axios"
 import DeviceInfo from "react-native-device-info"
 import { ToastAndroid } from "react-native"
 import { REACT_APP_BASE_URL } from "../Config/config"
+import { address } from "../Routes/addresses"
 
 export const AppStore = createContext()
 
@@ -53,7 +54,7 @@ const AppContext = ({ children }) => {
 
     console.log("OBJJJJJJ===>", obj)
     await axios
-      .post(`${REACT_APP_BASE_URL}/user/login`, obj, {
+      .post(address.LOGIN, obj, {
         headers: {
           Accept: "application/json",
         },
@@ -98,7 +99,7 @@ const AppContext = ({ children }) => {
 
   const nowDate = async () => {
     await axios
-      .get(`${REACT_APP_BASE_URL}/user/now_date`)
+      .get(address.NOW_DATE)
       .then(res => {
         console.log("NOW DATE FROM SERVER: ", new Date(res.data.now_date))
         setTodayDateFromServer(new Date(res.data.now_date))
@@ -123,7 +124,7 @@ const AppContext = ({ children }) => {
     const obj = { device_id: deviceId }
 
     await axios
-      .post(`${REACT_APP_BASE_URL}/user/my_agent`, obj, {
+      .post(address.MY_AGENT, obj, {
         headers: {
           Accept: "application/json",
         },
@@ -147,7 +148,7 @@ const AppContext = ({ children }) => {
   const getFlagsRequest = async () => {
     const obj = { bank_id: bankId, branch_code: branchCode, agent_code: userId }
     await axios
-      .post(`${REACT_APP_BASE_URL}/user/collection_checked`, obj, {
+      .post(address.COLLECTION_CHECKED, obj, {
         headers: {
           Accept: "application/json",
         },
@@ -174,7 +175,7 @@ const AppContext = ({ children }) => {
     const obj = { bank_id: bankId, branch_code: branchCode, agent_code: userId }
 
     await axios
-      .post(`${REACT_APP_BASE_URL}/user/total_collection`, obj, {
+      .post(address.TOTAL_COLLECTION, obj, {
         headers: {
           Accept: "application/json",
         },

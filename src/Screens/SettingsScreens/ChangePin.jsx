@@ -7,6 +7,7 @@ import { COLORS, colors } from "../../Resources/colors"
 import { AppStore } from "../../Context/AppContext"
 import axios from "axios"
 import { REACT_APP_BASE_URL } from "../../Config/config"
+import { address } from "../../Routes/addresses"
 
 const ChangePin = () => {
   const { userId, deviceId, bankId, branchCode, logout } = useContext(AppStore)
@@ -57,7 +58,7 @@ const ChangePin = () => {
       }
 
       await axios
-        .post(`${REACT_APP_BASE_URL}/user/change_pin`, obj, {
+        .post(address.CHANGE_PIN, obj, {
           headers: {
             Accept: "application/json",
           },

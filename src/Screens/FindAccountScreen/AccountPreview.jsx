@@ -24,6 +24,7 @@ import { AppStore } from "../../Context/AppContext"
 import { REACT_APP_BASE_URL } from "../../Config/config"
 import mainNavigationRoutes from "../../Routes/NavigationRoutes"
 import { StackActions } from "@react-navigation/native"
+import { address } from "../../Routes/addresses"
 
 const AccountPreview = ({ navigation, route }) => {
   const [receiptNumber, setReceiptNumber] = useState(() => "")
@@ -83,7 +84,7 @@ const AccountPreview = ({ navigation, route }) => {
     }
     console.log("===========", obj)
     await axios
-      .post(`${REACT_APP_BASE_URL}/user/transaction`, obj, {
+      .post(address.TRANSACTION, obj, {
         headers: {
           Accept: "application/json",
         },
