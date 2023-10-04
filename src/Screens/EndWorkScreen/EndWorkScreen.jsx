@@ -14,6 +14,7 @@ import MpinComponent from "../../Components/MpinComponent"
 import { AppStore } from "../../Context/AppContext"
 import axios from "axios"
 import { REACT_APP_BASE_URL } from "../../Config/config"
+import { address } from "../../Routes/addresses"
 import { StackActions, useFocusEffect } from "@react-navigation/native"
 
 const EndWorkScreen = ({ navigation }) => {
@@ -52,7 +53,7 @@ const EndWorkScreen = ({ navigation }) => {
     }
     console.log("XXX===========DDDDD", obj)
     await axios
-      .post(`${REACT_APP_BASE_URL}/user/end_collection`, obj, {
+      .post(address.END_COLLECTION, obj, {
         headers: {
           Accept: "application/json",
         },

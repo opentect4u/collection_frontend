@@ -6,6 +6,7 @@ import InputComponent from "../../Components/InputComponent"
 import SearchCard from "../../Components/SearchCard"
 import axios from "axios"
 import { REACT_APP_BASE_URL } from "../../Config/config"
+import { address } from "../../Routes/addresses"
 import { AppStore } from "../../Context/AppContext"
 import { useFocusEffect } from "@react-navigation/native"
 
@@ -38,7 +39,7 @@ const FindAccountScreen = ({ navigation }) => {
     console.log(userBankDetails)
 
     await axios
-      .post(`${REACT_APP_BASE_URL}/user/search_account`, obj, {
+      .post(address.SEARCH_ACCOUNT, obj, {
         headers: {
           Accept: "application/json",
         },
@@ -71,7 +72,7 @@ const FindAccountScreen = ({ navigation }) => {
         {/* Account Cards */}
 
         <ScrollView
-          style={{ maxHeight: "55%" }}
+          style={{ maxHeight: "60%" }}
           keyboardShouldPersistTaps="handled">
           {userBankDetails &&
             userBankDetails?.map((props, index) => {
