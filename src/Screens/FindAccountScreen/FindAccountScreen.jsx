@@ -72,7 +72,7 @@ const FindAccountScreen = ({ navigation }) => {
         {/* Account Cards */}
 
         <ScrollView
-          style={{ maxHeight: "55%" }}
+          style={{ maxHeight: "60%" }}
           keyboardShouldPersistTaps="handled">
           {userBankDetails &&
             userBankDetails?.map((props, index) => {

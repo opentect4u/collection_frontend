@@ -103,6 +103,8 @@ const ReportDay = () => {
         },
       })
       .then(res => {
+        console.log("333333333344444444444444444", res.data.success.msg)
+
         res.data.success.msg.forEach((item, i) => {
           let rowArr = [
             i + 1,
